@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pcR-4v-aR9">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="z0d-s2-r6Q">
+            <objects>
+                <tabBarController id="pcR-4v-aR9" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q8E-dx-6o3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ONH-s4-sFl" kind="relationship" relationship="viewControllers" id="RBr-2l-ldd"/>
+                        <segue destination="IHf-y7-E10" kind="relationship" relationship="viewControllers" id="vDX-sx-RDo"/>
+                        <segue destination="9nP-K1-Nbu" kind="relationship" relationship="viewControllers" id="0uT-MS-VeE"/>
+                        <segue destination="fP0-07-FVL" kind="relationship" relationship="viewControllers" id="Ruf-dv-Vak"/>
+                        <segue destination="6MI-f3-Lsf" kind="relationship" relationship="viewControllers" id="Lmr-m1-ia7"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mYL-1E-vYA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-403" y="-108"/>
+        </scene>
+        <!--Mortgage-->
+        <scene sceneID="PSA-DW-jT0">
+            <objects>
+                <viewController id="ONH-s4-sFl" customClass="MortgageViewController" customModule="FinanceCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tEw-ES-Fgo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="o2u-LZ-deK"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Mortgage" image="mortgage" id="8kn-R6-Xsp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B5q-KW-13Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1077" y="-1669"/>
+        </scene>
+        <!--Loans-->
+        <scene sceneID="3oE-fM-qgv">
+            <objects>
+                <viewController id="IHf-y7-E10" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cix-xn-lSb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="AZB-wM-7jn"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Loans" image="loan" id="bCg-OC-n52"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hC8-wa-fL0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1077" y="-900"/>
+        </scene>
+        <!--Savings-->
+        <scene sceneID="Umj-XE-XGU">
+            <objects>
+                <viewController id="9nP-K1-Nbu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4ci-yd-hA6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="GC4-k2-bTm"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Savings" image="savings" id="ZjW-3F-jXf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gt0-vv-CLz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1077" y="-108"/>
+        </scene>
+        <!--Compound Savings-->
+        <scene sceneID="KTW-By-T6M">
+            <objects>
+                <viewController id="fP0-07-FVL" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ief-u6-5cd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="AR0-Pv-Vzn"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Compound Savings" image="compound-savings" id="y8g-En-Vaa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a7t-D4-t1D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1077" y="691"/>
+        </scene>
+        <!--Help-->
+        <scene sceneID="5wO-1o-XCA">
+            <objects>
+                <viewController id="6MI-f3-Lsf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5S2-hy-aBX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="RtK-Cf-EHw"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Help" image="help" id="khi-s1-txf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ABM-9h-KXW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1077" y="1507"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="compound-savings" width="24" height="24"/>
+        <image name="help" width="24" height="24"/>
+        <image name="loan" width="24" height="24"/>
+        <image name="mortgage" width="24" height="24"/>
+        <image name="savings" width="24" height="24"/>
+    </resources>
+</document>
