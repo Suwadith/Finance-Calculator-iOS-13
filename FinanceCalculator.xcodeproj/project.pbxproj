@@ -13,6 +13,8 @@
 		1419453624079F5A00A2E20E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1419453424079F5A00A2E20E /* Main.storyboard */; };
 		1419453824079F5C00A2E20E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1419453724079F5C00A2E20E /* Assets.xcassets */; };
 		1419453B24079F5C00A2E20E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1419453924079F5C00A2E20E /* LaunchScreen.storyboard */; };
+		14B96637240A74C600D3FB49 /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B96636240A74C600D3FB49 /* KeyboardController.swift */; };
+		14B9663D240A767100D3FB49 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B9663C240A767100D3FB49 /* Keyboard.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		1419453724079F5C00A2E20E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1419453A24079F5C00A2E20E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1419453C24079F5C00A2E20E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14B96636240A74C600D3FB49 /* KeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
+		14B9663C240A767100D3FB49 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				1419453224079F5A00A2E20E /* MortgageViewController.swift */,
+				14B96636240A74C600D3FB49 /* KeyboardController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -87,6 +92,7 @@
 		14DB355F2407BCD9004CFAB3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				14B9663C240A767100D3FB49 /* Keyboard.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,6 +157,7 @@
 			files = (
 				1419453B24079F5C00A2E20E /* LaunchScreen.storyboard in Resources */,
 				1419453824079F5C00A2E20E /* Assets.xcassets in Resources */,
+				14B9663D240A767100D3FB49 /* Keyboard.xib in Resources */,
 				1419453624079F5A00A2E20E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14B96637240A74C600D3FB49 /* KeyboardController.swift in Sources */,
 				1419453324079F5A00A2E20E /* MortgageViewController.swift in Sources */,
 				1419452F24079F5A00A2E20E /* AppDelegate.swift in Sources */,
 				1419453124079F5A00A2E20E /* SceneDelegate.swift in Sources */,
@@ -316,7 +324,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suwadith.FinanceCalculator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FinanceCalculator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -334,7 +342,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suwadith.FinanceCalculator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FinanceCalculator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

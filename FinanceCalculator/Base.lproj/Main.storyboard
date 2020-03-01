@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pcR-4v-aR9">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,7 +17,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ONH-s4-sFl" kind="relationship" relationship="viewControllers" id="RBr-2l-ldd"/>
+                        <segue destination="LYJ-NO-Sce" kind="relationship" relationship="viewControllers" id="RBr-2l-ldd"/>
                         <segue destination="IHf-y7-E10" kind="relationship" relationship="viewControllers" id="vDX-sx-RDo"/>
                         <segue destination="9nP-K1-Nbu" kind="relationship" relationship="viewControllers" id="0uT-MS-VeE"/>
                         <segue destination="fP0-07-FVL" kind="relationship" relationship="viewControllers" id="Ruf-dv-Vak"/>
@@ -31,25 +31,92 @@
         <!--Mortgage-->
         <scene sceneID="PSA-DW-jT0">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B5q-KW-13Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="ONH-s4-sFl" customClass="MortgageViewController" customModule="FinanceCalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tEw-ES-Fgo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPX-Ek-AnQ">
+                                <rect key="frame" x="0.0" y="44" width="375" height="289"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oer-Hj-OGm">
+                                <rect key="frame" x="0.0" y="329" width="375" height="289"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oer-Hj-OGm" firstAttribute="top" secondItem="HPX-Ek-AnQ" secondAttribute="bottom" constant="-4" id="AE4-5d-HhQ"/>
+                            <constraint firstItem="o2u-LZ-deK" firstAttribute="bottom" secondItem="oer-Hj-OGm" secondAttribute="bottom" id="J8P-YS-tbY"/>
+                            <constraint firstItem="o2u-LZ-deK" firstAttribute="trailing" secondItem="HPX-Ek-AnQ" secondAttribute="trailing" id="Jqc-eB-LFA"/>
+                            <constraint firstItem="o2u-LZ-deK" firstAttribute="trailing" secondItem="oer-Hj-OGm" secondAttribute="trailing" id="PFL-Ml-y31"/>
+                            <constraint firstItem="HPX-Ek-AnQ" firstAttribute="height" secondItem="oer-Hj-OGm" secondAttribute="height" id="RdB-Ru-Ajr"/>
+                            <constraint firstItem="HPX-Ek-AnQ" firstAttribute="top" secondItem="o2u-LZ-deK" secondAttribute="top" id="Yvm-ut-CEr"/>
+                            <constraint firstItem="oer-Hj-OGm" firstAttribute="leading" secondItem="o2u-LZ-deK" secondAttribute="leading" id="c9N-ER-Rsn"/>
+                            <constraint firstItem="HPX-Ek-AnQ" firstAttribute="leading" secondItem="o2u-LZ-deK" secondAttribute="leading" id="gif-4D-qvg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="o2u-LZ-deK"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mortgage" image="mortgage" id="8kn-R6-Xsp"/>
+                    <navigationItem key="navigationItem" title="Mortgage" id="QxY-Ez-Gyu">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="bVG-oT-rZX">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Iyu-q2-J2R">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="sim-fU-FNa">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PSp-30-RCr">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="History"/>
+                                <connections>
+                                    <segue destination="5ZT-cs-uba" kind="show" id="SaT-P3-FXe"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B5q-KW-13Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077" y="-1669"/>
+            <point key="canvasLocation" x="2015.2" y="-1669.1154422788607"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="3R7-EB-9SF">
+            <objects>
+                <tableViewController id="5ZT-cs-uba" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gR7-Yi-QAA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5Sd-pV-inW">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Sd-pV-inW" id="sM8-Su-Yra">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5ZT-cs-uba" id="Fec-eg-T0R"/>
+                            <outlet property="delegate" destination="5ZT-cs-uba" id="3yh-SS-Aq5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="History" id="KxG-dp-BOU"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kqx-9S-2gZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3119" y="-1669"/>
         </scene>
         <!--Loans-->
         <scene sceneID="3oE-fM-qgv">
             <objects>
                 <viewController id="IHf-y7-E10" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cix-xn-lSb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="AZB-wM-7jn"/>
@@ -65,7 +132,7 @@
             <objects>
                 <viewController id="9nP-K1-Nbu" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4ci-yd-hA6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="GC4-k2-bTm"/>
@@ -81,7 +148,7 @@
             <objects>
                 <viewController id="fP0-07-FVL" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ief-u6-5cd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="AR0-Pv-Vzn"/>
@@ -97,7 +164,7 @@
             <objects>
                 <viewController id="6MI-f3-Lsf" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5S2-hy-aBX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="RtK-Cf-EHw"/>
@@ -108,11 +175,30 @@
             </objects>
             <point key="canvasLocation" x="1077" y="1507"/>
         </scene>
+        <!--Mortgage-->
+        <scene sceneID="gTg-cU-0Ry">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LYJ-NO-Sce" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Mortgage" image="mortgage" id="8kn-R6-Xsp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k4g-9p-Cbv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ONH-s4-sFl" kind="relationship" relationship="rootViewController" id="y4D-na-fjj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FMb-mh-RvN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="-1669.1154422788607"/>
+        </scene>
     </scenes>
     <resources>
         <image name="compound-savings" width="24" height="24"/>
         <image name="help" width="24" height="24"/>
-        <image name="loan" width="24" height="24"/>
+        <image name="loan" width="21" height="21"/>
         <image name="mortgage" width="24" height="24"/>
         <image name="savings" width="24" height="24"/>
     </resources>

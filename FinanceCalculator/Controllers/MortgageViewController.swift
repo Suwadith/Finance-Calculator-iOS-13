@@ -8,15 +8,39 @@
 
 import UIKit
 
-class MortgageViewController: UIViewController {
-
+class MortgageViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var loanAmount: UITextField!
+    @IBOutlet weak var interest: UITextField!
+    @IBOutlet weak var payment: UITextField!
+    @IBOutlet weak var numberOfYears: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .red
         // Do any additional setup after loading the view.
+        loanAmount.delegate = self
+        loanAmount.uniqueTextField()
+        interest.uniqueTextField()
+        payment.uniqueTextField()
+        numberOfYears.uniqueTextField()
     }
+    
+    
+    
+    @IBAction func loanAmountChanged(_ sender: Any) {
+        
+        interest.text = loanAmount.text
+    }
+    
 
+}
 
+extension UITextField {
+    
+    func uniqueTextField() {
+//        self.backgroundColor = .blue
+        self.layer.borderWidth = 1.5
+    }
+    
 }
 
