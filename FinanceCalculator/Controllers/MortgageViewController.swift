@@ -15,20 +15,26 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var payment: UITextField!
     @IBOutlet weak var numberOfYears: UITextField!
     
+    var textFields = [UITextField]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         loanAmount.delegate = self
-        loanAmount.uniqueTextField()
-        interest.uniqueTextField()
-        payment.uniqueTextField()
-        numberOfYears.uniqueTextField()
+        setUITextFieldBorders()
+    }
+    
+    func setUITextFieldBorders() {
+        
+        textFields = [loanAmount, interest, payment, numberOfYears]
+
+        for tf in textFields {
+            tf.styleTextField()
+        }
     }
     
     
-    
     @IBAction func loanAmountChanged(_ sender: Any) {
-        
         interest.text = loanAmount.text
     }
     
@@ -36,11 +42,10 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension UITextField {
-    
-    func uniqueTextField() {
-//        self.backgroundColor = .blue
+
+    func styleTextField() {
         self.layer.borderWidth = 1.5
     }
-    
+
 }
 
