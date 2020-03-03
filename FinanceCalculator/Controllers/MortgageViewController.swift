@@ -15,6 +15,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var payment: UITextField!
     @IBOutlet weak var numberOfYears: UITextField!
     
+    @IBOutlet weak var keyboard: KeyboardController!
     var textFields = [UITextField]()
     
     override func viewDidLoad() {

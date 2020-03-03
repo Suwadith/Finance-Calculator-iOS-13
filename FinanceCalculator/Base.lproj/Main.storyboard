@@ -141,7 +141,7 @@
                                     <constraint firstAttribute="bottom" secondItem="bL9-aX-ZyV" secondAttribute="bottom" id="zxk-hi-Yvz"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4Y-Fr-16g">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4Y-Fr-16g" customClass="KeyboardController" customModule="FinanceCalculator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="331" width="375" height="287"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -181,6 +181,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="interest" destination="OGg-h1-2KG" id="41n-S6-iYM"/>
+                        <outlet property="keyboard" destination="S4Y-Fr-16g" id="XQM-lV-oAo"/>
                         <outlet property="loanAmount" destination="omb-i2-DB0" id="S6x-CH-JZ4"/>
                         <outlet property="numberOfYears" destination="TzB-9g-poL" id="a3z-ej-eyA"/>
                         <outlet property="payment" destination="suR-08-SxS" id="6Ue-D1-FG8"/>
