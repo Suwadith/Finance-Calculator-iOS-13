@@ -22,6 +22,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         loanAmount.delegate = self
+//        loanAmount.inputView = keyboard
         setUITextFieldBorders()
     }
     
@@ -31,6 +32,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
 
         for tf in textFields {
             tf.styleTextField()
+//            tf.enableCustomKeyboard(keyboard: keyboard)
         }
     }
     
@@ -47,6 +49,10 @@ extension UITextField {
     func styleTextField() {
         self.layer.borderWidth = 1.5
     }
+    
+//    func enableCustomKeyboard(keyboard: KeyboardController) {
+//        self.inputView = keyboard
+//    }
 
 }
 
