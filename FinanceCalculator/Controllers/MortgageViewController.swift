@@ -48,11 +48,12 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
 
-        ///scroll the view and prevent hiding the current selected text field
+        
         if notification.name == UIResponder.keyboardWillShowNotification || notification.name ==  UIResponder.keyboardWillChangeFrameNotification {
+            ///scroll the view and prevent hiding the current selected text field
             scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
-            ///get back to the deafult position when tapped away
         } else {
+            ///get back to the deafult position when tapped away
             scrollView.contentInset = UIEdgeInsets.zero
         }
        }
