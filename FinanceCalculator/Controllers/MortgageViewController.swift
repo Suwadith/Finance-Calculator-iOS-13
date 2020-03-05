@@ -32,7 +32,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         self.loadDefaultsData("MortgageHistory")
         self.setUITextFieldBorders()
         self.assignInputView()
-        
+        hideKeyboardWhenTappedAround()
     }
     
     func assignDelegates() {
@@ -42,9 +42,8 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         numberOfYearsField.delegate = self
     }
     
+    //Replaces the default keyboard with the custom keyboard for all the text fields
     func assignInputView() {
-
-        // replace system keyboard with custom keyboard
         loanAmountField.inputView = keyboardView
         interestField.inputView = keyboardView
         paymentField.inputView = keyboardView

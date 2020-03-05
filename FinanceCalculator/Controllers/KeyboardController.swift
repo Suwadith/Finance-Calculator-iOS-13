@@ -37,10 +37,6 @@ class KeyboardController: UIView {
     var activeTextField = UITextField()
 
     @IBAction func keyTapped(sender: UIButton) {
-        // When a button is tapped, send that information to the
-        // delegate (ie, the view controller)
-//        self.delegate?.keyWasTapped(character: sender.titleLabel!.text!) // could alternatively send a tag value
-//        print("Test")
         
         let cursorPosition = getCursorPosition()
         
@@ -89,4 +85,17 @@ class KeyboardController: UIView {
     
     
 
+}
+
+//Extension to hide keyboard when touching outside of a textfield area
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
