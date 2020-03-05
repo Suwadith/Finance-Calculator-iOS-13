@@ -28,28 +28,11 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.assignDelegates()
         self.loadDefaultsData("MortgageHistory")
-        self.setUITextFieldBorders()
-        self.assignInputView()
+        self.customizeTextFields()
         hideKeyboardWhenTappedAround()
     }
     
-    func assignDelegates() {
-        loanAmountField.delegate = self
-        interestField.delegate = self
-        paymentField.delegate = self
-        numberOfYearsField.delegate = self
-    }
-    
-    //Replaces the default keyboard with the custom keyboard for all the text fields
-    func assignInputView() {
-        loanAmountField.inputView = keyboardView
-        interestField.inputView = keyboardView
-        paymentField.inputView = keyboardView
-        numberOfYearsField.inputView = keyboardView
-        
-    }
     
     func loadDefaultsData(_ historyKey :String) {
         let defaults = UserDefaults.standard
@@ -91,12 +74,14 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func setUITextFieldBorders() {
+    func customizeTextFields() {
         
         textFields = [loanAmountField, interestField, paymentField, numberOfYearsField]
 
         for tf in textFields {
             tf.styleTextField()
+            tf.setCustomKeyboard(self.keyboardView)
+            tf.assignDelegates(self)
         }
     }
     
@@ -108,15 +93,6 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         
         mortgage.historyStringArray.append(historyString)
         defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")
-    }
-    
-
-}
-
-extension UITextField {
-
-    func styleTextField() {
-        self.layer.borderWidth = 1.5
     }
     
 

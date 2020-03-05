@@ -17,6 +17,9 @@
 		14B9663D240A767100D3FB49 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B9663C240A767100D3FB49 /* Keyboard.xib */; };
 		14DD5D832410EFD700DF73D1 /* Mortgage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD5D822410EFD700DF73D1 /* Mortgage.swift */; };
 		14DD5D852411026300DF73D1 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD5D842411026300DF73D1 /* HistoryViewController.swift */; };
+		14DD5D8A2411637A00DF73D1 /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD5D892411637A00DF73D1 /* UIViewController+HideKeyboard.swift */; };
+		14DD5D8C2411657F00DF73D1 /* UITextField+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD5D8B2411657F00DF73D1 /* UITextField+Styling.swift */; };
+		14DD5D8E241165FF00DF73D1 /* UITextField+Keyboard+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD5D8D241165FF00DF73D1 /* UITextField+Keyboard+Delegates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		14B9663C240A767100D3FB49 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		14DD5D822410EFD700DF73D1 /* Mortgage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mortgage.swift; sourceTree = "<group>"; };
 		14DD5D842411026300DF73D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		14DD5D892411637A00DF73D1 /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
+		14DD5D8B2411657F00DF73D1 /* UITextField+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Styling.swift"; sourceTree = "<group>"; };
+		14DD5D8D241165FF00DF73D1 /* UITextField+Keyboard+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Keyboard+Delegates.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +70,7 @@
 		1419452D24079F5A00A2E20E /* FinanceCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				14DD5D862411626400DF73D1 /* Extensions */,
 				14DB355F2407BCD9004CFAB3 /* Views */,
 				14DB355E2407BCD2004CFAB3 /* Models */,
 				14DB355D2407BCA5004CFAB3 /* Controllers */,
@@ -101,6 +108,16 @@
 				14B9663C240A767100D3FB49 /* Keyboard.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		14DD5D862411626400DF73D1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				14DD5D892411637A00DF73D1 /* UIViewController+HideKeyboard.swift */,
+				14DD5D8B2411657F00DF73D1 /* UITextField+Styling.swift */,
+				14DD5D8D241165FF00DF73D1 /* UITextField+Keyboard+Delegates.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,8 +192,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14DD5D8C2411657F00DF73D1 /* UITextField+Styling.swift in Sources */,
 				14DD5D832410EFD700DF73D1 /* Mortgage.swift in Sources */,
+				14DD5D8E241165FF00DF73D1 /* UITextField+Keyboard+Delegates.swift in Sources */,
 				14B96637240A74C600D3FB49 /* KeyboardController.swift in Sources */,
+				14DD5D8A2411637A00DF73D1 /* UIViewController+HideKeyboard.swift in Sources */,
 				1419453324079F5A00A2E20E /* MortgageViewController.swift in Sources */,
 				14DD5D852411026300DF73D1 /* HistoryViewController.swift in Sources */,
 				1419452F24079F5A00A2E20E /* AppDelegate.swift in Sources */,
