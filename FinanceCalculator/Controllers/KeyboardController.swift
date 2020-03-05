@@ -8,39 +8,10 @@
 
 import UIKit
 
-protocol KeyboardDelegate: class {
-    func keyWasTapped(character: String)
+enum KeyboardButton: Int {
+    case zero, one, two, three, four, five, six, seven, eight, nine, period, delete, negation
 }
-
 class KeyboardController: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
-//    let nibName = "Keyboard"
-//    var contentView:UIView?
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//
-//        guard let view = loadViewFromNib() else { return }
-//        view.frame = self.bounds
-//        self.addSubview(view)
-//        contentView = view
-//    }
-//
-//    func loadViewFromNib() -> UIView? {
-//        let bundle = Bundle(for: type(of: self))
-//        let nib = UINib(nibName: nibName, bundle: bundle)
-//        return nib.instantiate(withOwner: self, options: nil).first as? UIView
-//    }
-    
-    weak var delegate: KeyboardDelegate?
 
     // MARK:- keyboard initialization
 
@@ -62,12 +33,60 @@ class KeyboardController: UIView {
     }
 
     // MARK:- Button actions from .xib file
+    
+    var activeTextField = UITextField()
 
     @IBAction func keyTapped(sender: UIButton) {
         // When a button is tapped, send that information to the
         // delegate (ie, the view controller)
-        self.delegate?.keyWasTapped(character: sender.titleLabel!.text!) // could alternatively send a tag value
+//        self.delegate?.keyWasTapped(character: sender.titleLabel!.text!) // could alternatively send a tag value
 //        print("Test")
+        
+        let cursorPosition = getCursorPosition()
+        
+        if let currentText = self.activeTextField.text {
+            switch KeyboardButton(rawValue: sender.tag)!{
+            case .period:
+                if !currentText.contains("."), currentText.count != 0 {
+                    activeTextField.insertText(".")
+                    setCursorPosition(from: cursorPosition)
+                }
+            case .delete:
+                if currentText.count != 0 {
+                    self.activeTextField.text?.remove(at: currentText.index(currentText.startIndex, offsetBy: cursorPosition - 1))
+                    
+                    if String(currentText[currentText.index(currentText.startIndex, offsetBy: cursorPosition - 1)]) != "." {
+                        activeTextField.sendActions(for: UIControl.Event.editingChanged)
+                    }
+                    
+                    setCursorPosition(from: cursorPosition, offset: -1)
+                }
+                
+            case .negation:
+                if !currentText.contains("-"), currentText.count != 0 {
+                    activeTextField.text?.insert("-", at: currentText.index(currentText.startIndex, offsetBy: 0))
+                    activeTextField.sendActions(for: UIControl.Event.editingChanged)
+                    setCursorPosition(from: cursorPosition)
+                }
+            default:
+                activeTextField.insertText(String(sender.tag))
+                setCursorPosition(from: cursorPosition)
+            }
+        }
+        
     }
+    
+    func getCursorPosition() -> Int {
+        guard let selectedRange = activeTextField.selectedTextRange else {return 0}
+        return activeTextField.offset(from: activeTextField.beginningOfDocument, to: selectedRange.start)
+    }
+    
+    func setCursorPosition(from:Int, offset: Int = 1) {
+        if let newPosition = activeTextField.position(from: activeTextField.beginningOfDocument, offset: from + offset) {
+            activeTextField.selectedTextRange = activeTextField.textRange(from: newPosition, to: newPosition)
+        }
+    }
+    
+    
 
 }

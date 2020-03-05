@@ -15,6 +15,8 @@
 		1419453B24079F5C00A2E20E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1419453924079F5C00A2E20E /* LaunchScreen.storyboard */; };
 		14B96637240A74C600D3FB49 /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B96636240A74C600D3FB49 /* KeyboardController.swift */; };
 		14B9663D240A767100D3FB49 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B9663C240A767100D3FB49 /* Keyboard.xib */; };
+		14DD5D832410EFD700DF73D1 /* Mortgage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD5D822410EFD700DF73D1 /* Mortgage.swift */; };
+		14DD5D852411026300DF73D1 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD5D842411026300DF73D1 /* HistoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		1419453C24079F5C00A2E20E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14B96636240A74C600D3FB49 /* KeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
 		14B9663C240A767100D3FB49 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
+		14DD5D822410EFD700DF73D1 /* Mortgage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mortgage.swift; sourceTree = "<group>"; };
+		14DD5D842411026300DF73D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				1419453224079F5A00A2E20E /* MortgageViewController.swift */,
+				14DD5D842411026300DF73D1 /* HistoryViewController.swift */,
 				14B96636240A74C600D3FB49 /* KeyboardController.swift */,
 			);
 			path = Controllers;
@@ -85,6 +90,7 @@
 		14DB355E2407BCD2004CFAB3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				14DD5D822410EFD700DF73D1 /* Mortgage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,8 +175,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14DD5D832410EFD700DF73D1 /* Mortgage.swift in Sources */,
 				14B96637240A74C600D3FB49 /* KeyboardController.swift in Sources */,
 				1419453324079F5A00A2E20E /* MortgageViewController.swift in Sources */,
+				14DD5D852411026300DF73D1 /* HistoryViewController.swift in Sources */,
 				1419452F24079F5A00A2E20E /* AppDelegate.swift in Sources */,
 				1419453124079F5A00A2E20E /* SceneDelegate.swift in Sources */,
 			);
