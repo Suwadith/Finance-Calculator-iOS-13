@@ -148,6 +148,7 @@
                         <outlet property="loanAmountField" destination="omb-i2-DB0" id="3v5-wm-QDX"/>
                         <outlet property="numberOfYearsField" destination="TzB-9g-poL" id="ecd-VA-7O7"/>
                         <outlet property="paymentField" destination="suR-08-SxS" id="sxO-X7-M6t"/>
+                        <outlet property="scrollView" destination="bL9-aX-ZyV" id="ddM-cl-f1d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5q-KW-13Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
