@@ -24,16 +24,25 @@
                                     <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="1"/>
+                                    <connections>
+                                        <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="OeW-09-T15"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfh-Ly-yUv">
                                     <rect key="frame" x="108.5" y="0.0" width="103" height="50.5"/>
                                     <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="2"/>
+                                    <connections>
+                                        <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="y9T-bY-GSc"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erb-0m-0jE">
                                     <rect key="frame" x="216.5" y="0.0" width="103.5" height="50.5"/>
                                     <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="3"/>
+                                    <connections>
+                                        <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="NDe-Ml-lg6"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

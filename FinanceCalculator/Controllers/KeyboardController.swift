@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol KeyboardDelegate: class {
+    func keyWasTapped(character: String)
+}
+
 class KeyboardController: UIView {
 
     /*
@@ -18,22 +22,52 @@ class KeyboardController: UIView {
     }
     */
     
-    let nibName = "Keyboard"
-    var contentView:UIView?
+//    let nibName = "Keyboard"
+//    var contentView:UIView?
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//
+//        guard let view = loadViewFromNib() else { return }
+//        view.frame = self.bounds
+//        self.addSubview(view)
+//        contentView = view
+//    }
+//
+//    func loadViewFromNib() -> UIView? {
+//        let bundle = Bundle(for: type(of: self))
+//        let nib = UINib(nibName: nibName, bundle: bundle)
+//        return nib.instantiate(withOwner: self, options: nil).first as? UIView
+//    }
     
+    weak var delegate: KeyboardDelegate?
+
+    // MARK:- keyboard initialization
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        guard let view = loadViewFromNib() else { return }
-        view.frame = self.bounds
-        self.addSubview(view)
-        contentView = view
+        initializeSubviews()
     }
-    
-    func loadViewFromNib() -> UIView? {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: nibName, bundle: bundle)
-        return nib.instantiate(withOwner: self, options: nil).first as? UIView
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initializeSubviews()
+    }
+
+    func initializeSubviews() {
+        let xibFileName = "Keyboard" // xib extention not included
+        let view = Bundle.main.loadNibNamed(xibFileName, owner: self, options: nil)![0] as! UIView
+        self.addSubview(view)
+        view.frame = self.bounds
+    }
+
+    // MARK:- Button actions from .xib file
+
+    @IBAction func keyTapped(sender: UIButton) {
+        // When a button is tapped, send that information to the
+        // delegate (ie, the view controller)
+        self.delegate?.keyWasTapped(character: sender.titleLabel!.text!) // could alternatively send a tag value
+//        print("Test")
     }
 
 }
