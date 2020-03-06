@@ -55,9 +55,6 @@
                                                         <rect key="frame" x="0.0" y="40.5" width="374" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <action selector="onTfValueChanged:" destination="ONH-s4-sFl" eventType="editingChanged" id="JM2-PY-3v1"/>
-                                                        </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LU-e4-YwU">
                                                         <rect key="frame" x="0.0" y="94.5" width="374" height="20.5"/>
@@ -69,9 +66,6 @@
                                                         <rect key="frame" x="0.0" y="135" width="374" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <action selector="onTfValueChanged:" destination="ONH-s4-sFl" eventType="editingChanged" id="nTw-DK-QQm"/>
-                                                        </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YA6-I8-wt1">
                                                         <rect key="frame" x="0.0" y="189" width="374" height="20.5"/>
@@ -83,9 +77,6 @@
                                                         <rect key="frame" x="0.0" y="229.5" width="374" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <action selector="onTfValueChanged:" destination="ONH-s4-sFl" eventType="editingChanged" id="xUj-ma-cIx"/>
-                                                        </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No. Of Years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpP-Rn-HfB">
                                                         <rect key="frame" x="0.0" y="283.5" width="374" height="20.5"/>
@@ -97,9 +88,6 @@
                                                         <rect key="frame" x="0.0" y="324" width="374" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <action selector="onTfValueChanged:" destination="ONH-s4-sFl" eventType="editingChanged" id="YQd-5q-Le5"/>
-                                                        </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPj-HK-L5s">
                                                         <rect key="frame" x="0.0" y="378" width="374" height="33"/>

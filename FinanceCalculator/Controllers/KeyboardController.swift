@@ -12,9 +12,11 @@ enum KeyboardButton: Int {
     case zero, one, two, three, four, five, six, seven, eight, nine, period, delete, negation
 }
 class KeyboardController: UIView {
+    
+    var currentView = ""
 
-    // MARK:- keyboard initialization
-
+    ///Popup keyboard initialization
+    ///Credit: https://stackoverflow.com/questions/33474771/a-swift-example-of-custom-views-for-data-input-custom-in-app-keyboard/33692231#33692231
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initializeSubviews()
@@ -31,8 +33,6 @@ class KeyboardController: UIView {
         self.addSubview(view)
         view.frame = self.bounds
     }
-
-    // MARK:- Button actions from .xib file
     
     var activeTextField = UITextField()
 
@@ -59,10 +59,14 @@ class KeyboardController: UIView {
                 }
                 
             case .negation:
-                if !currentText.contains("-"), currentText.count != 0 {
-                    activeTextField.text?.insert("-", at: currentText.index(currentText.startIndex, offsetBy: 0))
-                    activeTextField.sendActions(for: UIControl.Event.editingChanged)
-                    setCursorPosition(from: cursorPosition)
+                if currentView != "Mortgage" {
+                    if !currentText.contains("-"), currentText.count != 0 {
+                        activeTextField.text?.insert("-", at: currentText.index(currentText.startIndex, offsetBy: 0))
+                        activeTextField.sendActions(for: UIControl.Event.editingChanged)
+                        setCursorPosition(from: cursorPosition)
+                    }
+                } else {
+                    print(currentView)
                 }
             default:
                 activeTextField.insertText(String(sender.tag))

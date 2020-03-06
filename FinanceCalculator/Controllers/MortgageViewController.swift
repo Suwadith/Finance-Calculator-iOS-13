@@ -35,6 +35,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         hideKeyboardWhenTappedAround()
         addKeyboardEventListeners()
         calculateButton.styleCalculateButton()
+        self.keyboardView.currentView = "Mortgage"
     }
     
     override func keyboardWillChange(notification: Notification) {
@@ -60,36 +61,28 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         keyboardView.activeTextField = textField
     }
     
-    @IBAction func onTfValueChanged(_ sender: UITextField) {
-        guard let textFieldValue = sender.text else { return }
-        guard let doubleTextFieldValue = Double(textFieldValue) else { return }
-        
-    
-        switch MortgageUnits(rawValue: sender.tag)! {
-            
-        case .loanAmount:
-            mortgage.loanAmount = doubleTextFieldValue
-//            interestField.text = "\(mortgage.interest)"
-//            paymentField.text = "\(mortgage.payment)"
-//            numberOfYearsField.text = "\(mortgage.numberOfYears)"
-        case .interest:
-            mortgage.interest = doubleTextFieldValue
-//            loanAmountField.text = "\(mortgage.loanAmount)"
-//            paymentField.text = "\(mortgage.payment)"
-//            numberOfYearsField.text = "\(mortgage.numberOfYears)"
-        case .payment:
-            mortgage.payment = doubleTextFieldValue
-//            interestField.text = "\(mortgage.interest)"
-//            loanAmountField.text = "\(mortgage.loanAmount)"
-//            numberOfYearsField.text = "\(mortgage.numberOfYears)"
-        case .numberOfYears:
-            mortgage.numberOfYears = doubleTextFieldValue
-//            interestField.text = "\(mortgage.interest)"
-//            paymentField.text = "\(mortgage.payment)"
-//            loanAmountField.text = "\(mortgage.loanAmount)"
-        }
-        
-    }
+//    @IBAction func onTfValueChanged(_ sender: UITextField) {
+//        guard let textFieldValue = sender.text else { return }
+//        guard let doubleTextFieldValue = Double(textFieldValue) else { return }
+//
+//
+//        switch MortgageUnits(rawValue: sender.tag)! {
+//
+//        case .loanAmount:
+//            mortgage.loanAmount = doubleTextFieldValue
+//
+//        case .interest:
+//            mortgage.interest = doubleTextFieldValue
+//
+//        case .payment:
+//            mortgage.payment = doubleTextFieldValue
+//
+//        case .numberOfYears:
+//            mortgage.numberOfYears = doubleTextFieldValue
+//
+//        }
+//
+//    }
     
     func customizeTextFields() {
         
@@ -114,11 +107,33 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func onCalculate(_ sender: UIButton) {
-        print("Works")
         sender.pulsate()
-        
-        
+        dismissKeyboard()
+
+        if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == true && paymentField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == true {
+            showAlert(title: "Error", msg: "3 of the text fields have to be filled")
+        }else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false {
+            
+            let l = Double(loanAmountField.text!)
+            let i = Double(interestField.text!)
+            let p = Double(paymentField.text!)
+            
+            let lineOne = log(-p!/((l!*i!)-p!))
+            let linetwo = log(i!+1)
+            
+            let out = lineOne/linetwo
+            
+            numberOfYearsField.text = String(out)
+            
+            print(lineOne)
+            print(linetwo)
+            
+        } else {
+            showAlert(title: "Error", msg: "Calculation can only occur when 3 text fields are filled")
+        }
         
     }
+    
+    
 }
 
