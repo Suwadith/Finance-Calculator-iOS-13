@@ -19,8 +19,10 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var interestField: UITextField!
     @IBOutlet weak var paymentField: UITextField!
     @IBOutlet weak var numberOfYearsField: UITextField!
+    @IBOutlet weak var calculateButton: UIButton!
     
-    let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 300))
+    
+    let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
     var mortgage: Mortgage = Mortgage(loanAmount: 0.0, interest: 0.0, payment: 0.0, numberOfYears: 0.0)
     
@@ -32,7 +34,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         self.customizeTextFields()
         hideKeyboardWhenTappedAround()
         addKeyboardEventListeners()
-        
+        calculateButton.styleCalculateButton()
     }
     
     override func keyboardWillChange(notification: Notification) {
@@ -111,5 +113,12 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     }
     
 
+    @IBAction func onCalculate(_ sender: UIButton) {
+        print("Works")
+        sender.pulsate()
+        
+        
+        
+    }
 }
 
