@@ -35,28 +35,19 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    func addKeyboardEventListeners() {
-        ///listening to keyboard events
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    
-    @objc func keyboardWillChange(notification: Notification) {
+    override func keyboardWillChange(notification: Notification) {
         
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
-
-        
-        if notification.name == UIResponder.keyboardWillShowNotification || notification.name ==  UIResponder.keyboardWillChangeFrameNotification {
-            ///scroll the view and prevent hiding the current selected text field
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
-        } else {
-            ///get back to the deafult position when tapped away
-            scrollView.contentInset = UIEdgeInsets.zero
-        }
-       }
+            
+            if notification.name == UIResponder.keyboardWillShowNotification || notification.name ==  UIResponder.keyboardWillChangeFrameNotification {
+                ///scroll the view and prevent hiding the current selected text field
+                scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
+            } else {
+                ///get back to the deafult position when tapped away
+                scrollView.contentInset = UIEdgeInsets.zero
+            }
+    }
+    
     
     func loadDefaultsData(_ historyKey :String) {
         let defaults = UserDefaults.standard
