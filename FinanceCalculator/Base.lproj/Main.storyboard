@@ -279,7 +279,7 @@
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cse-92-5DN">
                                                                 <rect key="frame" x="325" y="0.0" width="51" height="31"/>
                                                             </switch>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yo2-E6-Yay">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yo2-E6-Yay">
                                                                 <rect key="frame" x="0.0" y="0.0" width="305" height="31"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -292,6 +292,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="Calculate"/>
                                                         <connections>
+                                                            <action selector="onCalculate:" destination="IHf-y7-E10" eventType="touchUpInside" id="77n-9t-wMo"/>
                                                             <action selector="onCalculate:" destination="ONH-s4-sFl" eventType="touchUpInside" id="Tix-og-Uj2"/>
                                                         </connections>
                                                     </button>
@@ -300,6 +301,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="Clear"/>
                                                         <connections>
+                                                            <action selector="onClear:" destination="IHf-y7-E10" eventType="touchUpInside" id="MoC-MS-3sA"/>
                                                             <action selector="onClear:" destination="ONH-s4-sFl" eventType="touchUpInside" id="Mwc-HP-ibF"/>
                                                         </connections>
                                                     </button>
@@ -334,13 +336,29 @@
                         <viewLayoutGuide key="safeArea" id="AZB-wM-7jn"/>
                     </view>
                     <navigationItem key="navigationItem" title="Loans" id="lio-Jw-Mnn">
-                        <barButtonItem key="leftBarButtonItem" title="Save" id="lE9-em-egT"/>
+                        <barButtonItem key="leftBarButtonItem" title="Save" id="lE9-em-egT">
+                            <connections>
+                                <action selector="onSave:" destination="IHf-y7-E10" id="m0n-Uj-1ed"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" id="4SO-8L-WVQ">
                             <connections>
                                 <segue destination="5ZT-cs-uba" kind="show" id="5jM-32-xhU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="calculateButton" destination="4xv-Kx-JSk" id="l4h-9R-odf"/>
+                        <outlet property="clearButton" destination="g7e-6y-Qar" id="jBd-um-SOB"/>
+                        <outlet property="compoundsPerYearField" destination="0Kf-Fi-Pm0" id="x7A-PP-JWm"/>
+                        <outlet property="futureValueField" destination="Rw3-5p-ZGh" id="jLC-pD-ZpI"/>
+                        <outlet property="interestField" destination="jdI-sO-tB2" id="Rrf-qu-qUF"/>
+                        <outlet property="paymentField" destination="O9d-nj-hej" id="fyt-CT-b8F"/>
+                        <outlet property="paymentTime" destination="yo2-E6-Yay" id="ggj-qD-LFa"/>
+                        <outlet property="paymentsPerWeekField" destination="wNG-PQ-xP6" id="s0Y-MO-u7w"/>
+                        <outlet property="presentValueField" destination="4Vb-Oo-in2" id="Q5f-cY-hd8"/>
+                        <outlet property="scrollView" destination="PYT-CP-uVn" id="QaW-F8-9Yc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hC8-wa-fL0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -756,6 +774,6 @@
         <image name="savings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p2r-LF-qLA"/>
+        <segue reference="5jM-32-xhU"/>
     </inferredMetricsTieBreakers>
 </document>
