@@ -23,15 +23,31 @@ class Mortgage {
         self.historyStringArray = [String]()
     }
     
+    func calculateLoanAmount() -> Double {
+        let monthlyInterestRate = self.interest / (12 * 100);
+        let numberOfMonths = 12 * self.numberOfYears;
+        let loan = (self.payment * (pow((1 + monthlyInterestRate), numberOfMonths) - 1)) / (monthlyInterestRate * pow((1 + monthlyInterestRate), numberOfMonths))
+        
+        self.loanAmount = loan
+        return loan
+    }
     
-    func calculateNumberOfYears() -> Double {
-        self.numberOfYears = log(-self.payment/self.loanAmount*self.interest-self.payment)/log(self.interest+1)
-        return self.numberOfYears
+    func calculateAnnualInterestRate() -> Double {
+        ///Todo
+        return self.interest
     }
     
     func calculateMonthlyPayment() -> Double {
-        self.payment = (((self.interest/12) * self.loanAmount)  / (1-(pow(1+(self.interest/12), (self.numberOfYears * -12)))))
+        let monthlyInterestRate = self.interest / (12 * 100);
+        let numberOfMonths = 12 * self.numberOfYears;
+        let monthlyPayment = (self.loanAmount * monthlyInterestRate) / (1 - (pow((1 + monthlyInterestRate), numberOfMonths * -1)));
+        self.payment = monthlyPayment
         return self.payment
+    }
+    
+    func calculateNumberOfYears() -> Double {
+        ///Todo
+        return self.numberOfYears
     }
     
 }

@@ -44,14 +44,14 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     override func keyboardWillChange(notification: Notification) {
         
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
-            
-            if notification.name == UIResponder.keyboardWillShowNotification || notification.name ==  UIResponder.keyboardWillChangeFrameNotification {
-                ///scroll the view and prevent hiding the current selected text field
-                scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
-            } else {
-                ///get back to the deafult position when tapped away
-                scrollView.contentInset = UIEdgeInsets.zero
-            }
+        
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name ==  UIResponder.keyboardWillChangeFrameNotification {
+            ///scroll the view and prevent hiding the current selected text field
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
+        } else {
+            ///get back to the deafult position when tapped away
+            scrollView.contentInset = UIEdgeInsets.zero
+        }
     }
     
     
@@ -66,7 +66,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     
     func customizeTextFields() {
         textFields = [loanAmountField, interestField, paymentField, numberOfYearsField]
-        for tf in self.textFields {
+        for tf in textFields {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
@@ -89,15 +89,17 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")
     }
     
-
+    
     @IBAction func onCalculate(_ sender: UIButton) {
         sender.pulsate()
         dismissKeyboard()
-
+        
         if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == true && paymentField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == true {
+            
             showAlert(title: "Error", msg: "3 of the inputs have to be given")
+            
         } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == true{
-
+            
             
             mortgage.loanAmount = Double(loanAmountField.text!)!
             mortgage.interest = Double(interestField.text!)!
@@ -106,13 +108,32 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             numberOfYearsField.text = String(mortgage.calculateNumberOfYears())
             
         }else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true{
-
-        
-        mortgage.loanAmount = Double(loanAmountField.text!)!
-        mortgage.interest = Double(interestField.text!)!
-        mortgage.numberOfYears = Double(numberOfYearsField.text!)!
-        
-        paymentField.text = String(mortgage.calculateMonthlyPayment())
+            
+            
+            mortgage.loanAmount = Double(loanAmountField.text!)!
+            mortgage.interest = Double(interestField.text!)!
+            mortgage.numberOfYears = Double(numberOfYearsField.text!)!
+            
+            paymentField.text = String(format: "%.2f", mortgage.calculateMonthlyPayment())
+            
+            }else if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
+            
+            
+            mortgage.numberOfYears = Double(numberOfYearsField.text!)!
+            mortgage.interest = Double(interestField.text!)!
+            mortgage.payment = Double(paymentField.text!)!
+            
+            loanAmountField.text = String(format: "%.2f", mortgage.calculateLoanAmount())
+            
+            }else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
+            
+            
+            mortgage.loanAmount = Double(loanAmountField.text!)!
+            mortgage.numberOfYears = Double(numberOfYearsField.text!)!
+            mortgage.payment = Double(paymentField.text!)!
+            
+            interestField.text = String(format: "%.2f", mortgage.calculateAnnualInterestRate())
+            
             
         } else {
             showAlert(title: "Error", msg: "Calculation can only occur when 3 inputs are filled")

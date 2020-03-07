@@ -17,10 +17,8 @@ extension UIButton {
     }
     
     func styleClearButton() {
-        
         self.backgroundColor = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1)
         self.setTitleColor(.white, for: .normal)
-        
     }
     
     ///On Button click perform a pulse like animation
