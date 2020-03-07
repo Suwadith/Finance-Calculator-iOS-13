@@ -70,7 +70,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
-//            tf.glowEmptyTextFields()
+            //            tf.glowEmptyTextFields()
         }
     }
     
@@ -106,9 +106,9 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.interest = Double(interestField.text!)!
             mortgage.payment = Double(paymentField.text!)!
             
-            numberOfYearsField.text = String(mortgage.calculateNumberOfYears())
+            numberOfYearsField.text = String(format: "%.2f", mortgage.calculateNumberOfYears())
             
-        }else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true{
+        } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true{
             
             
             mortgage.loanAmount = Double(loanAmountField.text!)!
@@ -117,7 +117,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             
             paymentField.text = String(format: "%.2f", mortgage.calculateMonthlyPayment())
             
-            }else if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
+        } else if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
             
             mortgage.numberOfYears = Double(numberOfYearsField.text!)!
@@ -126,7 +126,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             
             loanAmountField.text = String(format: "%.2f", mortgage.calculateLoanAmount())
             
-            }else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
+        } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
             
             mortgage.loanAmount = Double(loanAmountField.text!)!
