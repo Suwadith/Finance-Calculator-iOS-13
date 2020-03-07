@@ -18,5 +18,13 @@ extension UITextField {
     func clearField() {
         self.text = ""
     }
+    
+//    func glowEmptyTextFields() {
+//        if self.text == "" {
+//            self.layer.borderColor = UIColor.red.cgColor
+//        } else {
+//            self.layer.borderColor = UIColor.black.cgColor
+//        }
+//    }
 
 }

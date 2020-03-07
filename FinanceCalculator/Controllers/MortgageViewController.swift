@@ -70,6 +70,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
+//            tf.glowEmptyTextFields()
         }
     }
     
