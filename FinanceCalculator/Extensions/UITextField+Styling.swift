@@ -14,5 +14,9 @@ extension UITextField {
     func styleTextField() {
         self.layer.borderWidth = 1.5
     }
+    
+    func clearField() {
+        self.text = ""
+    }
 
 }

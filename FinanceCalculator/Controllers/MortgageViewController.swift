@@ -20,13 +20,14 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var paymentField: UITextField!
     @IBOutlet weak var numberOfYearsField: UITextField!
     @IBOutlet weak var calculateButton: UIButton!
-    
+    @IBOutlet weak var clearButton: UIButton!
     
     let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
     var mortgage: Mortgage = Mortgage(loanAmount: 0.0, interest: 0.0, payment: 0.0, numberOfYears: 0.0)
     
     var textFields = [UITextField]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,9 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         hideKeyboardWhenTappedAround()
         addKeyboardEventListeners()
         calculateButton.styleCalculateButton()
+        clearButton.styleClearButton()
         self.keyboardView.currentView = "Mortgage"
+        
     }
     
     override func keyboardWillChange(notification: Notification) {
@@ -61,37 +64,18 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         keyboardView.activeTextField = textField
     }
     
-//    @IBAction func onTfValueChanged(_ sender: UITextField) {
-//        guard let textFieldValue = sender.text else { return }
-//        guard let doubleTextFieldValue = Double(textFieldValue) else { return }
-//
-//
-//        switch MortgageUnits(rawValue: sender.tag)! {
-//
-//        case .loanAmount:
-//            mortgage.loanAmount = doubleTextFieldValue
-//
-//        case .interest:
-//            mortgage.interest = doubleTextFieldValue
-//
-//        case .payment:
-//            mortgage.payment = doubleTextFieldValue
-//
-//        case .numberOfYears:
-//            mortgage.numberOfYears = doubleTextFieldValue
-//
-//        }
-//
-//    }
-    
     func customizeTextFields() {
-        
         textFields = [loanAmountField, interestField, paymentField, numberOfYearsField]
-
-        for tf in textFields {
+        for tf in self.textFields {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
+        }
+    }
+    
+    func clearAllField() {
+        for tf in self.textFields {
+            tf.clearField()
         }
     }
     
@@ -111,29 +95,39 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         dismissKeyboard()
 
         if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == true && paymentField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == true {
-            showAlert(title: "Error", msg: "3 of the text fields have to be filled")
-        }else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false {
+            showAlert(title: "Error", msg: "3 of the inputs have to be given")
+        } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == true{
+
             
-            let l = Double(loanAmountField.text!)
-            let i = Double(interestField.text!)
-            let p = Double(paymentField.text!)
+            mortgage.loanAmount = Double(loanAmountField.text!)!
+            mortgage.interest = Double(interestField.text!)!
+            mortgage.payment = Double(paymentField.text!)!
             
-            let lineOne = log(-p!/((l!*i!)-p!))
-            let linetwo = log(i!+1)
+            numberOfYearsField.text = String(mortgage.calculateNumberOfYears())
             
-            let out = lineOne/linetwo
-            
-            numberOfYearsField.text = String(out)
-            
-            print(lineOne)
-            print(linetwo)
+        }else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true{
+
+        
+        mortgage.loanAmount = Double(loanAmountField.text!)!
+        mortgage.interest = Double(interestField.text!)!
+        mortgage.numberOfYears = Double(numberOfYearsField.text!)!
+        
+        paymentField.text = String(mortgage.calculateMonthlyPayment())
             
         } else {
-            showAlert(title: "Error", msg: "Calculation can only occur when 3 text fields are filled")
+            showAlert(title: "Error", msg: "Calculation can only occur when 3 inputs are filled")
         }
         
     }
     
+    
+    
+    @IBAction func onClear(_ sender: UIButton) {
+        sender.pulsate()
+        dismissKeyboard()
+        clearAllField()
+        
+    }
     
 }
 
