@@ -28,8 +28,8 @@ class Mortgage {
         let numberOfMonths = 12 * self.numberOfYears
         let loan = (self.payment * (pow((1 + monthlyInterestRate), numberOfMonths) - 1)) / (monthlyInterestRate * pow((1 + monthlyInterestRate), numberOfMonths))
         
-        self.loanAmount = loan
-        return loan
+        self.loanAmount = loan.roundTo2()
+        return self.loanAmount
     }
     
     func calculateAnnualInterestRate() -> Double {
@@ -66,14 +66,14 @@ class Mortgage {
         let monthlyInterestRate = self.interest / (12 * 100)
         let numberOfMonths = 12 * self.numberOfYears
         let monthlyPayment = (self.loanAmount * monthlyInterestRate) / (1 - (pow((1 + monthlyInterestRate), numberOfMonths * -1)))
-        self.payment = monthlyPayment
+        self.payment = monthlyPayment.roundTo2()
         return self.payment
     }
     
     func calculateNumberOfYears() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
         let numberOfMonths = log((self.payment / monthlyInterestRate) / ((self.payment / monthlyInterestRate) - (self.loanAmount))) / log(1 + monthlyInterestRate)
-        self.numberOfYears = numberOfMonths / 12
+        self.numberOfYears = (numberOfMonths / 12).roundTo2()
         return self.numberOfYears
     }
     

@@ -106,7 +106,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.interest = Double(interestField.text!)!
             mortgage.payment = Double(paymentField.text!)!
             
-            numberOfYearsField.text = String(format: "%.2f", mortgage.calculateNumberOfYears())
+            numberOfYearsField.text = String(mortgage.calculateNumberOfYears())
             
         } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true{
             
@@ -115,7 +115,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.interest = Double(interestField.text!)!
             mortgage.numberOfYears = Double(numberOfYearsField.text!)!
             
-            paymentField.text = String(format: "%.2f", mortgage.calculateMonthlyPayment())
+            paymentField.text = String(mortgage.calculateMonthlyPayment())
             
         } else if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
@@ -124,7 +124,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.interest = Double(interestField.text!)!
             mortgage.payment = Double(paymentField.text!)!
             
-            loanAmountField.text = String(format: "%.2f", mortgage.calculateLoanAmount())
+            loanAmountField.text = String(mortgage.calculateLoanAmount())
             
         } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
@@ -133,7 +133,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.numberOfYears = Double(numberOfYearsField.text!)!
             mortgage.payment = Double(paymentField.text!)!
             
-            interestField.text = String(format: "%.2f", mortgage.calculateAnnualInterestRate())
+            interestField.text = String(mortgage.calculateAnnualInterestRate())
             
             
         } else {

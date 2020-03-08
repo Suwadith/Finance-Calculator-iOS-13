@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Loans {
+class Loan {
     
     var presentValue: Double
     var futureValue : Double

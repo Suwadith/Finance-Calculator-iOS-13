@@ -16,7 +16,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var futureValueField: UITextField!
     @IBOutlet weak var interestField: UITextField!
     @IBOutlet weak var paymentField: UITextField!
-    @IBOutlet weak var paymentsPerWeekField: UITextField!
+    @IBOutlet weak var paymentsPerYearField: UITextField!
     @IBOutlet weak var compoundsPerYearField: UITextField!
     @IBOutlet weak var paymentTime: UILabel!
     @IBOutlet weak var calculateButton: UIButton!
@@ -24,7 +24,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
     
     let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
-    var loans: Loans = Loans(presentValue: 0.0, futureValue: 0.0, interest: 0.0, payment: 0.0, numberOfPaymentsPerYear: 0.0, compoundsPerYear: 0.0)
+    var loan: Loan = Loan(presentValue: 0.0, futureValue: 0.0, interest: 0.0, payment: 0.0, numberOfPaymentsPerYear: 0.0, compoundsPerYear: 0.0)
     
     var textFields = [UITextField]()
     
@@ -55,7 +55,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
         
         func loadDefaultsData(_ historyKey :String) {
             let defaults = UserDefaults.standard
-            loans.historyStringArray = defaults.object(forKey: historyKey) as? [String] ?? [String]()
+            loan.historyStringArray = defaults.object(forKey: historyKey) as? [String] ?? [String]()
         }
         
         func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -63,7 +63,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
         }
         
         func customizeTextFields() {
-            textFields = [presentValueField, futureValueField, interestField, paymentField, paymentsPerWeekField, compoundsPerYearField]
+            textFields = [presentValueField, futureValueField, interestField, paymentField, paymentsPerYearField, compoundsPerYearField]
             for tf in textFields {
                 tf.styleTextField()
                 tf.setCustomKeyboard(self.keyboardView)
@@ -82,10 +82,10 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
         
         @IBAction func onSave(_ sender: UIBarButtonItem) {
             let defaults = UserDefaults.standard
-            let historyString = "\(loans.presentValue) loan amount | \(loans.futureValue) interest | \(loans.interest) payment | \(loans.payment) number of years | \(loans.numberOfPaymentsPerYear) number of years | \(loans.compoundsPerYear) number of years"
+            let historyString = "\(loan.presentValue) loan amount | \(loan.futureValue) interest | \(loan.interest) payment | \(loan.payment) number of years | \(loan.numberOfPaymentsPerYear) number of years | \(loan.compoundsPerYear) number of years"
 
-            loans.historyStringArray.append(historyString)
-            defaults.set(loans.historyStringArray, forKey: "LoansHistory")
+            loan.historyStringArray.append(historyString)
+            defaults.set(loan.historyStringArray, forKey: "LoansHistory")
         }
     
     @IBAction func onCalculate(_ sender: UIButton) {

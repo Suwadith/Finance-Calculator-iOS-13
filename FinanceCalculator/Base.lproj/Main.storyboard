@@ -293,7 +293,6 @@
                                                         <state key="normal" title="Calculate"/>
                                                         <connections>
                                                             <action selector="onCalculate:" destination="IHf-y7-E10" eventType="touchUpInside" id="77n-9t-wMo"/>
-                                                            <action selector="onCalculate:" destination="ONH-s4-sFl" eventType="touchUpInside" id="Tix-og-Uj2"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7e-6y-Qar">
@@ -302,7 +301,6 @@
                                                         <state key="normal" title="Clear"/>
                                                         <connections>
                                                             <action selector="onClear:" destination="IHf-y7-E10" eventType="touchUpInside" id="MoC-MS-3sA"/>
-                                                            <action selector="onClear:" destination="ONH-s4-sFl" eventType="touchUpInside" id="Mwc-HP-ibF"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -355,7 +353,7 @@
                         <outlet property="interestField" destination="jdI-sO-tB2" id="Rrf-qu-qUF"/>
                         <outlet property="paymentField" destination="O9d-nj-hej" id="fyt-CT-b8F"/>
                         <outlet property="paymentTime" destination="yo2-E6-Yay" id="ggj-qD-LFa"/>
-                        <outlet property="paymentsPerWeekField" destination="wNG-PQ-xP6" id="s0Y-MO-u7w"/>
+                        <outlet property="paymentsPerYearField" destination="wNG-PQ-xP6" id="VHc-kt-KQt"/>
                         <outlet property="presentValueField" destination="4Vb-Oo-in2" id="Q5f-cY-hd8"/>
                         <outlet property="scrollView" destination="PYT-CP-uVn" id="QaW-F8-9Yc"/>
                     </connections>
@@ -463,7 +461,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="Calculate"/>
                                                         <connections>
-                                                            <action selector="onCalculate:" destination="ONH-s4-sFl" eventType="touchUpInside" id="zUQ-Dn-Irc"/>
+                                                            <action selector="onCalculate:" destination="9nP-K1-Nbu" eventType="touchUpInside" id="d7B-V8-33V"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILd-Wb-u3E">
@@ -471,7 +469,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="Clear"/>
                                                         <connections>
-                                                            <action selector="onClear:" destination="ONH-s4-sFl" eventType="touchUpInside" id="3bh-HT-z1N"/>
+                                                            <action selector="onClear:" destination="9nP-K1-Nbu" eventType="touchUpInside" id="s2B-8H-9Pa"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -505,13 +503,29 @@
                         <viewLayoutGuide key="safeArea" id="GC4-k2-bTm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Savings" id="i9I-Ry-BC2">
-                        <barButtonItem key="leftBarButtonItem" title="Save" id="aAD-FY-5oN"/>
+                        <barButtonItem key="leftBarButtonItem" title="Save" id="aAD-FY-5oN">
+                            <connections>
+                                <action selector="onSave:" destination="9nP-K1-Nbu" id="2L4-fc-yBi"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" id="BUz-9p-lhs">
                             <connections>
                                 <segue destination="5ZT-cs-uba" kind="show" id="pXm-nR-07l"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="calculateButton" destination="S7b-mP-nj3" id="Adz-8t-HbG"/>
+                        <outlet property="clearButton" destination="ILd-Wb-u3E" id="wmk-9K-vPY"/>
+                        <outlet property="compoundsPerYearField" destination="f5i-GF-eEd" id="7DF-iy-RC3"/>
+                        <outlet property="futureValueField" destination="S1u-Yv-Mc8" id="zKX-XS-LRU"/>
+                        <outlet property="interestField" destination="3eo-ZJ-WiQ" id="pRK-Tg-2rJ"/>
+                        <outlet property="paymentField" destination="6XI-Ew-cBW" id="0th-BR-vT6"/>
+                        <outlet property="paymentsPerYearField" destination="9T9-RP-mJP" id="FVP-VQ-cLv"/>
+                        <outlet property="principalAmountField" destination="ahf-2s-AkQ" id="3Kb-KW-iUM"/>
+                        <outlet property="scrollView" destination="lwc-Ah-p9k" id="99Q-gf-R7x"/>
+                        <outlet property="totalNoOfPaymentsField" destination="fey-rR-TFI" id="1Yb-Fs-eHG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gt0-vv-CLz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -619,7 +633,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="Calculate"/>
                                                         <connections>
-                                                            <action selector="onCalculate:" destination="ONH-s4-sFl" eventType="touchUpInside" id="9Zp-lW-BnP"/>
+                                                            <action selector="onCalculate:" destination="fP0-07-FVL" eventType="touchUpInside" id="3Uq-UE-N53"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EnN-6c-UqH">
@@ -627,7 +641,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="Clear"/>
                                                         <connections>
-                                                            <action selector="onClear:" destination="ONH-s4-sFl" eventType="touchUpInside" id="NSz-an-Vcl"/>
+                                                            <action selector="onClear:" destination="fP0-07-FVL" eventType="touchUpInside" id="muC-HL-9FN"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -661,13 +675,29 @@
                         <viewLayoutGuide key="safeArea" id="AR0-Pv-Vzn"/>
                     </view>
                     <navigationItem key="navigationItem" title="Compound Savings" id="IBa-fF-xKQ">
-                        <barButtonItem key="leftBarButtonItem" title="Save" id="T6E-Xf-bLt"/>
+                        <barButtonItem key="leftBarButtonItem" title="Save" id="T6E-Xf-bLt">
+                            <connections>
+                                <action selector="onSave:" destination="fP0-07-FVL" id="hH1-07-Wfq"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" id="hjw-u2-bKB">
                             <connections>
                                 <segue destination="5ZT-cs-uba" kind="show" id="p2r-LF-qLA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="calculateButton" destination="UBh-s6-iuD" id="TSw-zf-cXj"/>
+                        <outlet property="clearButton" destination="EnN-6c-UqH" id="L4X-FU-8ZV"/>
+                        <outlet property="compoundsPerYearField" destination="vaf-vK-VVQ" id="Tcw-Pv-wM3"/>
+                        <outlet property="futureValueField" destination="5mP-He-ler" id="B2R-4S-2LB"/>
+                        <outlet property="interestField" destination="Pbz-vM-cBF" id="Lwo-ko-f0T"/>
+                        <outlet property="paymentField" destination="30d-65-YMm" id="Zye-OZ-4OY"/>
+                        <outlet property="paymentTime" destination="cqm-op-17z" id="NQi-D4-UP8"/>
+                        <outlet property="paymentsPerYearField" destination="Vl2-gn-Kbu" id="G6b-M6-sDS"/>
+                        <outlet property="presentValueField" destination="sUm-NE-BhV" id="L0X-Ma-4Qd"/>
+                        <outlet property="scrollView" destination="IC8-FZ-KYa" id="GPT-VV-Wa5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a7t-D4-t1D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -774,6 +804,6 @@
         <image name="savings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5jM-32-xhU"/>
+        <segue reference="p2r-LF-qLA"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,12 +15,13 @@
 		1419453B24079F5C00A2E20E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1419453924079F5C00A2E20E /* LaunchScreen.storyboard */; };
 		14B96637240A74C600D3FB49 /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B96636240A74C600D3FB49 /* KeyboardController.swift */; };
 		14B9663D240A767100D3FB49 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B9663C240A767100D3FB49 /* Keyboard.xib */; };
-		14D25B872413D83500E66461 /* Loans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B862413D83500E66461 /* Loans.swift */; };
+		14D25B872413D83500E66461 /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B862413D83500E66461 /* Loan.swift */; };
 		14D25B892413D84000E66461 /* Savings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B882413D84000E66461 /* Savings.swift */; };
 		14D25B8B2413D85000E66461 /* CompundSavings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B8A2413D85000E66461 /* CompundSavings.swift */; };
 		14D25B8D2413D8A500E66461 /* LoansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B8C2413D8A500E66461 /* LoansViewController.swift */; };
 		14D25B8F2413D8C000E66461 /* SavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B8E2413D8C000E66461 /* SavingsViewController.swift */; };
 		14D25B912413D8D200E66461 /* CompoundSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B902413D8D200E66461 /* CompoundSavingsViewController.swift */; };
+		14D25B9324149BDE00E66461 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B9224149BDE00E66461 /* Double+Round.swift */; };
 		14D4CDB2241231A80015523E /* UIViewController+KeyboardListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D4CDB1241231A80015523E /* UIViewController+KeyboardListeners.swift */; };
 		14D4CDB42412C3350015523E /* UIButton+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D4CDB32412C3350015523E /* UIButton+Styling.swift */; };
 		14D4CDB62412EED10015523E /* UITextField+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D4CDB52412EED10015523E /* UITextField+Validations.swift */; };
@@ -43,12 +44,13 @@
 		1419453C24079F5C00A2E20E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14B96636240A74C600D3FB49 /* KeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
 		14B9663C240A767100D3FB49 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
-		14D25B862413D83500E66461 /* Loans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loans.swift; sourceTree = "<group>"; };
+		14D25B862413D83500E66461 /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
 		14D25B882413D84000E66461 /* Savings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savings.swift; sourceTree = "<group>"; };
 		14D25B8A2413D85000E66461 /* CompundSavings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompundSavings.swift; sourceTree = "<group>"; };
 		14D25B8C2413D8A500E66461 /* LoansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansViewController.swift; sourceTree = "<group>"; };
 		14D25B8E2413D8C000E66461 /* SavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsViewController.swift; sourceTree = "<group>"; };
 		14D25B902413D8D200E66461 /* CompoundSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSavingsViewController.swift; sourceTree = "<group>"; };
+		14D25B9224149BDE00E66461 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		14D4CDB1241231A80015523E /* UIViewController+KeyboardListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardListeners.swift"; sourceTree = "<group>"; };
 		14D4CDB32412C3350015523E /* UIButton+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Styling.swift"; sourceTree = "<group>"; };
 		14D4CDB52412EED10015523E /* UITextField+Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Validations.swift"; sourceTree = "<group>"; };
@@ -121,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				14DD5D822410EFD700DF73D1 /* Mortgage.swift */,
-				14D25B862413D83500E66461 /* Loans.swift */,
+				14D25B862413D83500E66461 /* Loan.swift */,
 				14D25B882413D84000E66461 /* Savings.swift */,
 				14D25B8A2413D85000E66461 /* CompundSavings.swift */,
 			);
@@ -146,6 +148,7 @@
 				14D4CDB32412C3350015523E /* UIButton+Styling.swift */,
 				14D4CDB52412EED10015523E /* UITextField+Validations.swift */,
 				14D4CDB72412F5570015523E /* UIViewController+Alerts.swift */,
+				14D25B9224149BDE00E66461 /* Double+Round.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				14D4CDB62412EED10015523E /* UITextField+Validations.swift in Sources */,
 				14B96637240A74C600D3FB49 /* KeyboardController.swift in Sources */,
 				14DD5D8A2411637A00DF73D1 /* UIViewController+HideKeyboard.swift in Sources */,
+				14D25B9324149BDE00E66461 /* Double+Round.swift in Sources */,
 				1419453324079F5A00A2E20E /* MortgageViewController.swift in Sources */,
 				14DD5D852411026300DF73D1 /* HistoryViewController.swift in Sources */,
 				14D4CDB2241231A80015523E /* UIViewController+KeyboardListeners.swift in Sources */,
@@ -240,7 +244,7 @@
 				14D4CDB82412F5570015523E /* UIViewController+Alerts.swift in Sources */,
 				1419452F24079F5A00A2E20E /* AppDelegate.swift in Sources */,
 				1419453124079F5A00A2E20E /* SceneDelegate.swift in Sources */,
-				14D25B872413D83500E66461 /* Loans.swift in Sources */,
+				14D25B872413D83500E66461 /* Loan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
