@@ -16,7 +16,6 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var interestField: UITextField!
     @IBOutlet weak var numberOfYearsField: UITextField!
     @IBOutlet weak var compoundsPerYearField: UITextField!
-    @IBOutlet weak var paymentTime: UILabel!
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     
@@ -39,7 +38,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         calculateButton.styleCalculateButton()
         clearButton.styleClearButton()
         self.keyboardView.currentView = "CompoundSavings"
-        
+        populateTextFields()
     }
     
     
@@ -85,6 +84,22 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    ///Stores all the textfield values
+    func storeTextFieldValues() {
+        UserDefaults.standard.set(presentValueField.text, forKey: "compSavingspresentValueField")
+        UserDefaults.standard.set(interestField.text, forKey: "compSavingsinterestField")
+        UserDefaults.standard.set(futureValueField.text, forKey: "compSavingsfutureValueField")
+        UserDefaults.standard.set(numberOfYearsField.text, forKey: "compSavingsnumberOfYearsField")
+    }
+    
+    ///Populates the appropriate textfields with previously used values
+    func populateTextFields() {
+        presentValueField.text =  UserDefaults.standard.string(forKey: "compSavingspresentValueField")
+        interestField.text =  UserDefaults.standard.string(forKey: "compSavingsinterestField")
+        futureValueField.text =  UserDefaults.standard.string(forKey: "compSavingsfutureValueField")
+        numberOfYearsField.text =  UserDefaults.standard.string(forKey: "compSavingsnumberOfYearsField")
+    }
+    
     
     ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
@@ -107,6 +122,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
             compoundSavings.numberOfYears = Double(numberOfYearsField.text!)!
             
             presentValueField.text = String(compoundSavings.calculatePresentValue())
+            storeTextFieldValues()
             
         } else if presentValueField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false {
             
@@ -116,6 +132,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
             compoundSavings.numberOfYears = Double(numberOfYearsField.text!)!
             
             futureValueField.text = String(compoundSavings.calculateFutureValue())
+            storeTextFieldValues()
             
         } else if presentValueField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == false {
             
@@ -125,6 +142,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
             //            compoundSavings.payment = 0.0
             
             interestField.text = String(compoundSavings.calculateCompoundInterestRate())
+            storeTextFieldValues()
             
         } else if presentValueField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == true {
             
@@ -134,9 +152,10 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
             //            compoundSavings.payment = 0.0
             
             numberOfYearsField.text = String(compoundSavings.calculateNumberOfYears())
+            storeTextFieldValues()
             
         } else {
-            showAlert(title: "Error", msg: "Every field cannot be left empty")
+            showAlert(title: "Error", msg: "Invalid Operation")
             
         }
         
@@ -148,7 +167,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         sender.pulsate()
         dismissKeyboard()
         clearAllField()
-        
+        storeTextFieldValues()
     }
     
     

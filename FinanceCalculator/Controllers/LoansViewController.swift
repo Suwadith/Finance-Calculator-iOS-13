@@ -38,6 +38,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
         calculateButton.styleCalculateButton()
         clearButton.styleClearButton()
         self.keyboardView.currentView = "Loans"
+        populateTextFields()
     }
     
     ///Scrlls the view accordingly to avoid blocking text fields
@@ -82,6 +83,22 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    ///Stores all the textfield values
+    func storeTextFieldValues() {
+        UserDefaults.standard.set(loanAmountField.text, forKey: "loansloanAmountField")
+        UserDefaults.standard.set(interestField.text, forKey: "loansinterestField")
+        UserDefaults.standard.set(paymentField.text, forKey: "loanspaymentField")
+        UserDefaults.standard.set(numberOfPaymentsField.text, forKey: "loansnumberOfPaymentsField")
+    }
+    
+    ///Populates the appropriate textfields with previously used values
+    func populateTextFields() {
+        loanAmountField.text =  UserDefaults.standard.string(forKey: "loansloanAmountField")
+        interestField.text =  UserDefaults.standard.string(forKey: "loansinterestField")
+        paymentField.text =  UserDefaults.standard.string(forKey: "loanspaymentField")
+        numberOfPaymentsField.text =  UserDefaults.standard.string(forKey: "loansnumberOfPaymentsField")
+    }
+    
     
     ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
@@ -97,11 +114,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
         sender.pulsate()
         dismissKeyboard()
         
-        if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == true && paymentField.checkIfEmpty() == true && numberOfPaymentsField.checkIfEmpty() == true {
-            
-            showAlert(title: "Error", msg: "3 of the inputs have to be given")
-            
-        } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && numberOfPaymentsField.checkIfEmpty() == true{
+        if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && numberOfPaymentsField.checkIfEmpty() == true{
             
             
             loan.loanAmount = Double(loanAmountField.text!)!
@@ -109,6 +122,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
             loan.payment = Double(paymentField.text!)!
             
             numberOfPaymentsField.text = String(loan.calculateNumberOfPayments())
+            storeTextFieldValues()
             
         } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfPaymentsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true{
             
@@ -118,6 +132,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
             loan.numberOfPayments = Int(Double(numberOfPaymentsField.text!)!)
             
             paymentField.text = String(loan.calculateMonthlyPayment())
+            storeTextFieldValues()
             
         } else if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && numberOfPaymentsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
@@ -127,6 +142,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
             loan.payment = Double(paymentField.text!)!
             
             loanAmountField.text = String(loan.calculateLoanAmount())
+            storeTextFieldValues()
             
         } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && numberOfPaymentsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
@@ -136,10 +152,10 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
             loan.payment = Double(paymentField.text!)!
             
             interestField.text = String(loan.calculateAnnualInterestRate())
-            
+            storeTextFieldValues()
             
         } else {
-            showAlert(title: "Error", msg: "Calculation can only occur when 3 inputs are filled")
+            showAlert(title: "Error", msg: "Invalid Operation")
         }
         
     }
@@ -150,7 +166,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
         sender.pulsate()
         dismissKeyboard()
         clearAllField()
-        
+        storeTextFieldValues()
     }
     
 }

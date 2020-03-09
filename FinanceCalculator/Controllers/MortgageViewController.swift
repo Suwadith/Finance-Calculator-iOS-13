@@ -37,7 +37,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         calculateButton.styleCalculateButton()
         clearButton.styleClearButton()
         self.keyboardView.currentView = "Mortgage"
-        
+        populateTextFields()
     }
     
     ///Scrlls the view accordingly to avoid blocking text fields
@@ -80,6 +80,23 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         for tf in self.textFields {
             tf.clearField()
         }
+
+    }
+    
+    ///Stores all the textfield values
+    func storeTextFieldValues() {
+        UserDefaults.standard.set(loanAmountField.text, forKey: "mortgageloanAmountField")
+        UserDefaults.standard.set(interestField.text, forKey: "mortgageinterestField")
+        UserDefaults.standard.set(paymentField.text, forKey: "mortgagepaymentField")
+        UserDefaults.standard.set(numberOfYearsField.text, forKey: "mortgagenumberOfYearsField")
+    }
+    
+    ///Populates the appropriate textfields with previously used values
+    func populateTextFields() {
+        loanAmountField.text =  UserDefaults.standard.string(forKey: "mortgageloanAmountField")
+        interestField.text =  UserDefaults.standard.string(forKey: "mortgageinterestField")
+        paymentField.text =  UserDefaults.standard.string(forKey: "mortgagepaymentField")
+        numberOfYearsField.text =  UserDefaults.standard.string(forKey: "mortgagenumberOfYearsField")
     }
     
     
@@ -97,11 +114,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         sender.pulsate()
         dismissKeyboard()
         
-        if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == true && paymentField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == true {
-            
-            showAlert(title: "Error", msg: "3 of the inputs have to be given")
-            
-        } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == true{
+        if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == true{
             
             
             mortgage.loanAmount = Double(loanAmountField.text!)!
@@ -109,6 +122,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.payment = Double(paymentField.text!)!
             
             numberOfYearsField.text = String(mortgage.calculateNumberOfYears())
+            storeTextFieldValues()
             
         } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true{
             
@@ -118,6 +132,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.numberOfYears = Double(numberOfYearsField.text!)!
             
             paymentField.text = String(mortgage.calculateMonthlyPayment())
+            storeTextFieldValues()
             
         } else if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
@@ -127,6 +142,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.payment = Double(paymentField.text!)!
             
             loanAmountField.text = String(mortgage.calculateLoanAmount())
+            storeTextFieldValues()
             
         } else if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && numberOfYearsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
@@ -136,10 +152,11 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             mortgage.payment = Double(paymentField.text!)!
             
             interestField.text = String(mortgage.calculateAnnualInterestRate())
+            storeTextFieldValues()
             
             
         } else {
-            showAlert(title: "Error", msg: "Calculation can only occur when 3 inputs are filled")
+            showAlert(title: "Error", msg: "Invalid Operation")
         }
         
     }
@@ -150,8 +167,10 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         sender.pulsate()
         dismissKeyboard()
         clearAllField()
-        
+        storeTextFieldValues()
     }
+    
+    
     
 }
 

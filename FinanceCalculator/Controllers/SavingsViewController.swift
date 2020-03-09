@@ -19,6 +19,11 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var paymentsPerYearField: UITextField!
     @IBOutlet weak var futureValueField: UITextField!
     @IBOutlet weak var totalNoOfPaymentsField: UITextField!
+    
+    
+    @IBOutlet weak var calculationTime: UILabel!
+    
+    @IBOutlet weak var timeSwitch: UISwitch!
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     
@@ -87,6 +92,14 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func onTImeChange(_ sender: UISwitch) {
+        if(timeSwitch.isOn) {
+            self.calculationTime.text = "End"
+        } else {
+            self.calculationTime.text = "Beginning"
+        }
+        
+    }
     
     ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
