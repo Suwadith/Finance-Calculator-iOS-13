@@ -242,7 +242,7 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
         sender.pulsate()
         dismissKeyboard()
         clearAllField()
-        
+        storeTextFieldValues()
     }
     
     
