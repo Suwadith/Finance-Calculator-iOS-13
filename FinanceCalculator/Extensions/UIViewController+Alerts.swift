@@ -11,8 +11,10 @@ import UIKit
 
 extension UIViewController {
     
-    ///Alert Message
-    ///Credit: https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift/51876884#51876884
+    /**
+     Shows an alert message
+     * Reference: https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift/51876884#51876884
+    */
     func showAlert(title: String, msg: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)

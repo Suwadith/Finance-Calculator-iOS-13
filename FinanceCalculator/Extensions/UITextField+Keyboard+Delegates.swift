@@ -11,7 +11,7 @@ import UIKit
 
 extension UITextField {
     
-    ///Replaces the default keyboard with the custom keyboard for all the text fields
+    /// Replaces the default keyboard with the custom keyboard for all the input views (text fields etc.)
     func setCustomKeyboard(_ customKeyboard: KeyboardController) {
         self.inputView = customKeyboard
     }

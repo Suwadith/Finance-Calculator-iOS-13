@@ -23,6 +23,11 @@ class Mortgage {
         self.historyStringArray = [String]()
     }
     
+    /**
+     Calculates the principal loan amount
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / 12) * 100
+     * principal_loan_amount = (monthly_payment * (pow((1 + monthly_interest_rate), number_of_months) - 1)) / (monthly_interest_rate * pow((1 + monthly_interest_rate), number_of_months))
+    */
     func calculateLoanAmount() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
         let numberOfMonths = 12 * self.numberOfYears
@@ -33,21 +38,21 @@ class Mortgage {
     }
     
     func calculateAnnualInterestRate() -> Double {
-        
-        var x = 1 + (((self.payment*self.numberOfYears/self.loanAmount) - 1) / 12) // initial guess
+        let numberOfMonths = 12 * self.numberOfYears
+        var x = 1 + (((self.payment*numberOfMonths/self.loanAmount) - 1) / 12) // initial guess
         // var x = 0.1;
         let FINANCIAL_PRECISION = Double(0.000001) // 1e-6
         
         func F(_ x: Double) -> Double { // f(x)
             // (loan * x * (1 + x)^n) / ((1+x)^n - 1) - pmt
-            return Double(self.loanAmount * x * pow(1 + x, self.numberOfYears) / (pow(1+x, self.numberOfYears) - 1) - payment);
+            return Double(self.loanAmount * x * pow(1 + x, numberOfMonths) / (pow(1+x, numberOfMonths) - 1) - payment);
         }
                             
         func FPrime(_ x: Double) -> Double { // f'(x)
             // (loan * (x+1)^(n-1) * ((x*(x+1)^n + (x+1)^n-n*x-x-1)) / ((x+1)^n - 1)^2)
-            let c_derivative = pow(x+1, self.numberOfYears)
-            return Double(self.loanAmount * pow(x+1, self.numberOfYears-1) *
-                (x * c_derivative + c_derivative - (self.numberOfYears*x) - x - 1)) / pow(c_derivative - 1, 2)
+            let c_derivative = pow(x+1, numberOfMonths)
+            return Double(self.loanAmount * pow(x+1, numberOfMonths-1) *
+                (x * c_derivative + c_derivative - (numberOfMonths*x) - x - 1)) / pow(c_derivative - 1, 2)
         }
         
         while(abs(F(x)) > FINANCIAL_PRECISION) {
@@ -74,6 +79,12 @@ class Mortgage {
         return self.interest
     }
     
+    /**
+     Calculates the montly payment value
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / 12) * 100
+     * number_of_months = number_of_years * 12
+     * monthly_payment = (principal_loan_amount * monthly_interest_rate) / (1 - (pow((1 + monthly_interest_rate), number_of_months * -1)))
+    */
     func calculateMonthlyPayment() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
         let numberOfMonths = 12 * self.numberOfYears
@@ -82,6 +93,12 @@ class Mortgage {
         return self.payment
     }
     
+    
+    /**
+     Calculates the montly payment value
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / 12) * 100
+     * number_of_months = log((monthly_payment / monthly_interest_rate) / ((monthly_payment / monthly_interest_rate) - (principal_loan_amount))) / log(1 + monthly_interest_rate)
+    */
     func calculateNumberOfYears() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
         let numberOfMonths = log((self.payment / monthlyInterestRate) / ((self.payment / monthlyInterestRate) - (self.loanAmount))) / log(1 + monthlyInterestRate)

@@ -11,6 +11,7 @@ import UIKit
 
 extension UIButton {
     
+    //Adds a custom color to a given button
     func styleCalculateButton() {
         self.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
         self.setTitleColor(.black, for: .normal)
@@ -21,8 +22,10 @@ extension UIButton {
         self.setTitleColor(.white, for: .normal)
     }
     
-    ///On Button click perform a pulse like animation
-    ///Credit: https://medium.com/better-programming/swift-uibutton-animations-6ce016212c6e
+    /**
+     On Button click perform a pulse like animation
+     * Reference: https://medium.com/better-programming/swift-uibutton-animations-6ce016212c6e
+    */
     func pulsate() {
         let pulse = CASpringAnimation(keyPath: "transform.scale")
         pulse.duration = 0.2

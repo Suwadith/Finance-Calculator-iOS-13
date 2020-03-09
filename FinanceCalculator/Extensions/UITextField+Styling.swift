@@ -11,10 +11,12 @@ import UIKit
 
 extension UITextField {
 
+    /// Adds a box border with a particular border width
     func styleTextField() {
         self.layer.borderWidth = 1.5
     }
     
+    /// Clears text fields
     func clearField() {
         self.text = ""
     }

@@ -11,6 +11,7 @@ import UIKit
 
 extension UITextField {
     
+    /// Checks if the text field is empty
     func checkIfEmpty() -> Bool{
         if self.text!.count > 0 {
             return false
