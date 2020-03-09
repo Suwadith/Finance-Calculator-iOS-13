@@ -144,38 +144,19 @@
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="YIJ-jw-Cms"/>
                                     </connections>
                                 </button>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7dI-2B-d11">
+                                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Kq-H8-ypi">
                                     <rect key="frame" x="216.5" y="0.0" width="103.5" height="50"/>
-                                    <subviews>
-                                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Kq-H8-ypi">
-                                            <rect key="frame" x="0.0" y="0.0" width="103.5" height="22.5"/>
-                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" image="delete.left" catalog="system"/>
-                                            <connections>
-                                                <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="5l7-tv-4Le"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnH-br-ZJf">
-                                            <rect key="frame" x="0.0" y="27.5" width="103.5" height="22.5"/>
-                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="NEG"/>
-                                            <connections>
-                                                <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="x08-ii-V35"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="mnH-br-ZJf" firstAttribute="width" secondItem="4Kq-H8-ypi" secondAttribute="width" id="CmQ-IF-qD5"/>
-                                        <constraint firstItem="mnH-br-ZJf" firstAttribute="height" secondItem="4Kq-H8-ypi" secondAttribute="height" id="QlF-s9-v8h"/>
-                                    </constraints>
-                                </stackView>
+                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" image="delete.left" catalog="system"/>
+                                    <connections>
+                                        <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="5l7-tv-4Le"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="7dI-2B-d11" firstAttribute="height" secondItem="ACc-zR-V29" secondAttribute="height" id="tYo-XS-Cob"/>
                                 <constraint firstItem="kcD-qB-QAV" firstAttribute="height" secondItem="ACc-zR-V29" secondAttribute="height" id="u9b-Wn-skC"/>
                                 <constraint firstItem="kcD-qB-QAV" firstAttribute="width" secondItem="ACc-zR-V29" secondAttribute="width" id="uaG-xs-lQH"/>
-                                <constraint firstItem="7dI-2B-d11" firstAttribute="width" secondItem="ACc-zR-V29" secondAttribute="width" id="wDy-Ev-DGb"/>
                             </constraints>
                         </stackView>
                     </subviews>

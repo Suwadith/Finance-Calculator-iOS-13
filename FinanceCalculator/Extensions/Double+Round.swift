@@ -13,9 +13,8 @@ extension Double {
     
     func roundTo2() -> Double {
         let divisor = pow(10.0, 2.0)
-        let test = (self * divisor).rounded() / divisor
-        print(test)
-        return test
+        let rounded = (self * divisor).rounded() / divisor
+        return rounded
     }
     
     

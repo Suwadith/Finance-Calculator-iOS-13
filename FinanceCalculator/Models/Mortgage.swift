@@ -34,30 +34,42 @@ class Mortgage {
     
     func calculateAnnualInterestRate() -> Double {
         
-        func SolveForI(pa: Double, payment: Double, terms: Double) -> Double {
-            
-            var x = 1 + (((payment*terms/pa) - 1) / 12) // initial guess
-            let f_p = Double(0.000001) // 1e-6
-            
-            func F(_ x: Double) -> Double {
-                // (loan * x * (1 + x)^n) / ((1+x)^n - 1) - pmt
-                return Double(pa * x * pow(1 + x, terms) / (pow(1+x, terms) - 1) - payment);
-            }
-            
-            func F_Prime(_ x: Double) -> Double {
-                // (loan * (x+1)^(n-1) * (x*(x+1)^n + (x+1)^n-n*x-x-1)) / ((x+1)^n - 1)^2
-                let c_derivative = pow(x+1, terms)
-                return Double(pa * pow(x+1, terms-1) *
-                    (x * c_derivative + c_derivative - (terms*x) - x - 1)) / pow(c_derivative - 1, 2)
-            }
-            
-            while(abs(F(x)) > f_p) {
-                x = x - F(x) / F_Prime(x) // issue here
-            }
-            
-            return x;
-            
+        var x = 1 + (((self.payment*self.numberOfYears/self.loanAmount) - 1) / 12) // initial guess
+        // var x = 0.1;
+        let FINANCIAL_PRECISION = Double(0.000001) // 1e-6
+        
+        func F(_ x: Double) -> Double { // f(x)
+            // (loan * x * (1 + x)^n) / ((1+x)^n - 1) - pmt
+            return Double(self.loanAmount * x * pow(1 + x, self.numberOfYears) / (pow(1+x, self.numberOfYears) - 1) - payment);
         }
+                            
+        func FPrime(_ x: Double) -> Double { // f'(x)
+            // (loan * (x+1)^(n-1) * ((x*(x+1)^n + (x+1)^n-n*x-x-1)) / ((x+1)^n - 1)^2)
+            let c_derivative = pow(x+1, self.numberOfYears)
+            return Double(self.loanAmount * pow(x+1, self.numberOfYears-1) *
+                (x * c_derivative + c_derivative - (self.numberOfYears*x) - x - 1)) / pow(c_derivative - 1, 2)
+        }
+        
+        while(abs(F(x)) > FINANCIAL_PRECISION) {
+            x = x - F(x) / FPrime(x)
+        }
+
+        // Convert to yearly interest & Return as a percentage
+        // with two decimal fraction digits
+
+        let I = Double(12 * x * 100)
+        self.interest = I
+        print("DEBUG", I)
+
+        // if the found value for I is inf or less than zero
+        // there's no interest applied
+//        if I.isNaN || I.isInfinite || I < 0 {
+//            return 0.0;
+//        } else {
+//          // this may return a value more than 100% for cases such as
+//          // where payment = 2000, terms = 12, amount = 10000  <--- unreal figures
+//          return I
+//        }
         ///Todo
         return self.interest
     }

@@ -23,7 +23,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
     
     let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
-    var compoundSavings: CompoundSavings = CompoundSavings(presentValue: 0.0, futureValue: 0.0, interest: 0.0, payment: 0.0, numberOfPaymentsPerYear: 0.0, compoundsPerYear: 0.0)
+    var compoundSavings: CompoundSavings = CompoundSavings(presentValue: 0.0, futureValue: 0.0, interest: 0.0, payment: 0.0, numberOfYears: 0.0, compoundsPerYear: 0.0)
     
     var textFields = [UITextField]()
 
@@ -95,7 +95,42 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
             sender.pulsate()
             dismissKeyboard()
             
-            
+            if presentValueField.checkIfEmpty() == true && futureValueField.checkIfEmpty() == true && interestField.checkIfEmpty() == true && paymentField.checkIfEmpty() == true && paymentsPerYearField.checkIfEmpty() == true && compoundsPerYearField.checkIfEmpty() == true {
+                    
+                    showAlert(title: "Error", msg: "Every field cannot be left empty")
+                    
+                } else if presentValueField.checkIfEmpty() == true && futureValueField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && paymentsPerYearField.checkIfEmpty() == false && compoundsPerYearField.checkIfEmpty() == false {
+                    
+                    
+                    compoundSavings.futureValue = Double(futureValueField.text!)!
+                    compoundSavings.interest = Double(interestField.text!)!
+                    compoundSavings.payment = Double(paymentField.text!)!
+                    compoundSavings.numberOfYears = Double(paymentsPerYearField.text!)!
+                    compoundSavings.compoundsPerYear = Double(compoundsPerYearField.text!)!
+                    
+                    presentValueField.text = String(compoundSavings.calculatePresentValue())
+                
+            } else if presentValueField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && paymentsPerYearField.checkIfEmpty() == false && compoundsPerYearField.checkIfEmpty() == false {
+                    
+                    compoundSavings.presentValue = Double(presentValueField.text!)!
+                    compoundSavings.interest = Double(interestField.text!)!
+                    compoundSavings.payment = Double(paymentField.text!)!
+                    compoundSavings.numberOfYears = Double(paymentsPerYearField.text!)!
+                    compoundSavings.compoundsPerYear = Double(compoundsPerYearField.text!)!
+                    
+                    futureValueField.text = String(compoundSavings.calculateFutureValue())
+                    
+                } else if presentValueField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && paymentsPerYearField.checkIfEmpty() == true && compoundsPerYearField.checkIfEmpty() == false {
+                    
+                    compoundSavings.presentValue = Double(presentValueField.text!)!
+                    compoundSavings.futureValue = Double(futureValueField.text!)!
+                    compoundSavings.interest = Double(interestField.text!)!
+                    compoundSavings.payment = Double(paymentField.text!)!
+                    compoundSavings.compoundsPerYear = Double(compoundsPerYearField.text!)!
+                    
+                    paymentsPerYearField.text = String(compoundSavings.calculateNumberOfYears())
+                    
+                }
             
         }
         
