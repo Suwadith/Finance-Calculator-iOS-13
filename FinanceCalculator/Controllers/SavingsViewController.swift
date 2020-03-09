@@ -31,7 +31,7 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
     let keyboardView: KeyboardController = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
     ///Creation of a Savings object
-    var savings: Savings = Savings(principalAmount: 0.0, interest: 0.0, payment: 0.0, compoundsPerYear: 0.0, paymentsPerYear: 0.0, futureValue: 0.0, totalNumberOfPayments: 0.0)
+    var savings: Savings = Savings(principalAmount: 0.0, interest: 0.0, payment: 0.0, compoundsPerYear: 12, paymentsPerYear: 12, futureValue: 0.0, totalNumberOfPayments: Int(0.0))
     
     ///An array of UITextFields
     var textFields = [UITextField]()
@@ -46,7 +46,7 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
         calculateButton.styleCalculateButton()
         clearButton.styleClearButton()
         self.keyboardView.currentView = "Savings"
-        
+        populateTextFields()
     }
     
     ///Scrlls the view accordingly to avoid blocking text fields
@@ -76,27 +76,44 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
     
     ///A loop to customize multiple text fields at the same time using swift extensions
     func customizeTextFields() {
-        textFields = [principalAmountField, interestField, paymentField, compoundsPerYearField, paymentsPerYearField, futureValueField, totalNoOfPaymentsField]
+        textFields = [principalAmountField, interestField, paymentField, futureValueField, totalNoOfPaymentsField, compoundsPerYearField, paymentsPerYearField]
         for tf in textFields {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
-            //            tf.glowEmptyTextFields()
         }
     }
     
     ///Clears all the text fields
     func clearAllField() {
-        for tf in self.textFields {
-            tf.clearField()
+        for tf in 0..<self.textFields.count-2 {
+            self.textFields[tf].clearField()
         }
     }
     
-    @IBAction func onTImeChange(_ sender: UISwitch) {
+    ///Stores all the textfield values
+    func storeTextFieldValues() {
+        UserDefaults.standard.set(principalAmountField.text, forKey: "savingspresentValueField")
+        UserDefaults.standard.set(interestField.text, forKey: "savingsinterestField")
+        UserDefaults.standard.set(paymentField.text, forKey: "savingspaymentField")
+        UserDefaults.standard.set(futureValueField.text, forKey: "savingsfutureValueField")
+        UserDefaults.standard.set(totalNoOfPaymentsField.text, forKey: "savingstotalNoOfPaymentsField")
+    }
+    
+    ///Populates the appropriate textfields with previously used values
+    func populateTextFields() {
+        principalAmountField.text =  UserDefaults.standard.string(forKey: "savingspresentValueField")
+        interestField.text =  UserDefaults.standard.string(forKey: "savingsinterestField")
+        paymentField.text =  UserDefaults.standard.string(forKey: "savingspaymentField")
+        futureValueField.text =  UserDefaults.standard.string(forKey: "savingsfutureValueField")
+        totalNoOfPaymentsField.text =  UserDefaults.standard.string(forKey: "savingstotalNoOfPaymentsField")
+    }
+    
+    @IBAction func onTimeChange(_ sender: UISwitch) {
         if(timeSwitch.isOn) {
-            self.calculationTime.text = "End"
+            calculationTime.text = "End"
         } else {
-            self.calculationTime.text = "Beginning"
+            calculationTime.text = "Beginning"
         }
         
     }
@@ -104,10 +121,10 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
     ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
         let defaults = UserDefaults.standard
-        //        let historyString = "\(mortgage.loanAmount) loan amount | \(mortgage.interest) interest | \(mortgage.payment) payment | \(mortgage.numberOfYears) number of years"
-        //
-        //        mortgage.historyStringArray.append(historyString)
-        //        defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")
+        let historyString = " 1. Principal Amount - \(savings.principalAmount) \n 2. Interest Rate (%) - \(savings.interest) \n 3. Deposit - \(savings.payment) \n 4. Number of Compounds per Year - \(savings.compoundsPerYear)  \n 5. Number of Deposits per Year - \(savings.paymentsPerYear) \n 6. Future Value - \(savings.futureValue) \n 7. Total number of Deposits - \(savings.totalNumberOfPayments) \n 8. Deposit made at the - \(calculationTime.text!)"
+        
+        savings.historyStringArray.append(historyString)
+        defaults.set(savings.historyStringArray, forKey: "SavingsHistory")
     }
     
     ///Calculates the appropriate values requested y the user
@@ -115,7 +132,107 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
         sender.pulsate()
         dismissKeyboard()
         
-        
+        if(calculationTime.text) == "End" {
+            
+            if principalAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == false {
+                
+                savings.interest = Double(interestField.text!)!
+                savings.futureValue = Double(futureValueField.text!)!
+                savings.payment = Double(paymentField.text!)!
+                savings.totalNumberOfPayments = Int(Double(totalNoOfPaymentsField.text!)!)
+                
+                principalAmountField.text = String(savings.calculateEndPrincipalAmount())
+                storeTextFieldValues()
+                
+            } else if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true && totalNoOfPaymentsField.checkIfEmpty() == false {
+                
+                savings.interest = Double(interestField.text!)!
+                savings.futureValue = Double(futureValueField.text!)!
+                savings.principalAmount = Double(principalAmountField.text!)!
+                savings.totalNumberOfPayments = Int(Double(totalNoOfPaymentsField.text!)!)
+                
+                paymentField.text = String(savings.calculateEndPayment())
+                storeTextFieldValues()
+                
+            
+            } else if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == true && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == false {
+                
+                savings.interest = Double(interestField.text!)!
+                savings.payment = Double(paymentField.text!)!
+                savings.principalAmount = Double(principalAmountField.text!)!
+                savings.totalNumberOfPayments = Int(Double(totalNoOfPaymentsField.text!)!)
+                
+                futureValueField.text = String(savings.calculateEndFutureValue())
+                storeTextFieldValues()
+                
+            
+            } else if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == true {
+                
+                savings.interest = Double(interestField.text!)!
+                savings.payment = Double(paymentField.text!)!
+                savings.principalAmount = Double(principalAmountField.text!)!
+                savings.futureValue = Double(futureValueField.text!)!
+                
+                totalNoOfPaymentsField.text = String(savings.calculateEndNumberOfPayments())
+                storeTextFieldValues()
+                
+            
+            } else {
+                showAlert(title: "Error", msg: "Invalid Operation")
+                
+            }
+            
+        } else {
+            
+            if principalAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == false {
+                
+                savings.interest = Double(interestField.text!)!
+                savings.futureValue = Double(futureValueField.text!)!
+                savings.payment = Double(paymentField.text!)!
+                savings.totalNumberOfPayments = Int(Double(totalNoOfPaymentsField.text!)!)
+                
+                principalAmountField.text = String(savings.calculateBeginningPrincipalAmount())
+                storeTextFieldValues()
+                
+            } else if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == true && totalNoOfPaymentsField.checkIfEmpty() == false {
+                
+                savings.interest = Double(interestField.text!)!
+                savings.futureValue = Double(futureValueField.text!)!
+                savings.principalAmount = Double(principalAmountField.text!)!
+                savings.totalNumberOfPayments = Int(Double(totalNoOfPaymentsField.text!)!)
+                
+                paymentField.text = String(savings.calculateBeginningPayment())
+                storeTextFieldValues()
+                
+            
+            } else if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == true && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == false {
+                
+                savings.interest = Double(interestField.text!)!
+                savings.payment = Double(paymentField.text!)!
+                savings.principalAmount = Double(principalAmountField.text!)!
+                savings.totalNumberOfPayments = Int(Double(totalNoOfPaymentsField.text!)!)
+                
+                futureValueField.text = String(savings.calculateBeginningFutureValue())
+                storeTextFieldValues()
+                
+            
+            } else if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == true {
+                
+                savings.interest = Double(interestField.text!)!
+                savings.payment = Double(paymentField.text!)!
+                savings.principalAmount = Double(principalAmountField.text!)!
+                savings.futureValue = Double(futureValueField.text!)!
+                
+                totalNoOfPaymentsField.text = String(savings.calculateBeginningNumberOfPayments())
+                storeTextFieldValues()
+                
+            
+            } else {
+                showAlert(title: "Error", msg: "Invalid Operation")
+                
+            }
+            
+        }
         
     }
     
