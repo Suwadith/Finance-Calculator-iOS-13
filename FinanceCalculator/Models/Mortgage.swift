@@ -25,8 +25,9 @@ class Mortgage {
     
     /**
      Calculates the principal loan amount
-     * monthly_interest_rate (in decimal) = (yearly_interest_rate / 12) * 100
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / (12 * 100)
      * principal_loan_amount = (monthly_payment * (pow((1 + monthly_interest_rate), number_of_months) - 1)) / (monthly_interest_rate * pow((1 + monthly_interest_rate), number_of_months))
+     * [Reference](https://www.calculatorsoup.com/calculators/financial/mortgage-calculator.php)
     */
     func calculateLoanAmount() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
@@ -80,10 +81,11 @@ class Mortgage {
     }
     
     /**
-     Calculates the montly payment value
-     * monthly_interest_rate (in decimal) = (yearly_interest_rate / 12) * 100
+     Calculates the monthly payment value
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / (12 * 100)
      * number_of_months = number_of_years * 12
      * monthly_payment = (principal_loan_amount * monthly_interest_rate) / (1 - (pow((1 + monthly_interest_rate), number_of_months * -1)))
+     * [Reference](https://www.calculatorsoup.com/calculators/financial/mortgage-calculator.php)
     */
     func calculateMonthlyPayment() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
@@ -95,9 +97,11 @@ class Mortgage {
     
     
     /**
-     Calculates the montly payment value
-     * monthly_interest_rate (in decimal) = (yearly_interest_rate / 12) * 100
+     Calculates the number of years
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / (12 * 100)
      * number_of_months = log((monthly_payment / monthly_interest_rate) / ((monthly_payment / monthly_interest_rate) - (principal_loan_amount))) / log(1 + monthly_interest_rate)
+     * number_of_years = number_of_months / 12
+     * [Reference](https://www.calculatorsoup.com/calculators/financial/mortgage-calculator.php)
     */
     func calculateNumberOfYears() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)

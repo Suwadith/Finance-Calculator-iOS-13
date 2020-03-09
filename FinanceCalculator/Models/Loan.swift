@@ -24,9 +24,15 @@ class Loan {
         self.historyStringArray = [String]()
     }
     
+    
+    /**
+     Calculates the principal loan amount
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / (12 * 100)
+     * principal_loan_amount = (monthly_payment * (pow((1 + monthly_interest_rate), number_of_payments) - 1)) / (monthly_interest_rate * pow((1 + monthly_interest_rate), number_of_payments))
+     * [Reference](https://www.calculatorsoup.com/calculators/financial/loan-calculator-simple.php)
+    */
     func calculateLoanAmount() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
-//        let numberOfMonths = 12 * self.numberOfYears
         let loan = (self.payment * (pow((1 + monthlyInterestRate), Double(numberoOfPayments)) - 1)) / (monthlyInterestRate * pow((1 + monthlyInterestRate), Double(numberoOfPayments)))
         
         self.loanAmount = loan.roundTo2()
@@ -63,14 +69,25 @@ class Loan {
         return self.interest
     }
     
+    /**
+     Calculates the monthly payment value
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / (12 * 100)
+     * monthly_payment = (principal_loan_amount * monthly_interest_rate) / (1 - (pow((1 + monthly_interest_rate), number_of_payments * -1)))
+     * [Reference](https://www.calculatorsoup.com/calculators/financial/loan-calculator-simple.php)
+    */
     func calculateMonthlyPayment() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
-//        let numberOfMonths = 12 * self.numberOfYears
         let monthlyPayment = (self.loanAmount * monthlyInterestRate) / (1 - (pow((1 + monthlyInterestRate), Double(numberoOfPayments) * -1)))
         self.payment = monthlyPayment.roundTo2()
         return self.payment
     }
     
+    /**
+     Calculates the number of payments
+     * monthly_interest_rate (in decimal) = (yearly_interest_rate / (12 * 100)
+     * number_of_payments = log((monthly_payment / monthly_interest_rate) / ((monthly_payment / monthly_interest_rate) - (principal_loan_amount))) / log(1 + monthly_interest_rate)
+     * [Reference](https://www.calculatorsoup.com/calculators/financial/loan-calculator-simple.php)
+    */
     func calculateNumberOfPayments() -> Int {
         let monthlyInterestRate = self.interest / (12 * 100)
         let numberOfMonths = log((self.payment / monthlyInterestRate) / ((self.payment / monthlyInterestRate) - (self.loanAmount))) / log(1 + monthlyInterestRate)

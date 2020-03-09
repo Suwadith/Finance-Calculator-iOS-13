@@ -13,7 +13,7 @@ extension UIViewController {
     
     /**
      Shows an alert message
-     * Reference: https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift/51876884#51876884
+     * [Reference](https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift/51876884#51876884)
     */
     func showAlert(title: String, msg: String) {
         DispatchQueue.main.async {

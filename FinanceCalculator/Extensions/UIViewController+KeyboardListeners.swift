@@ -13,7 +13,7 @@ extension UIViewController {
     
     /**
      Listens to keyboard events
-     * Reference: https://www.youtube.com/watch?v=xVZubAMFuIU
+     * [Reference](https://www.youtube.com/watch?v=xVZubAMFuIU)
     */
     func addKeyboardEventListeners() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)

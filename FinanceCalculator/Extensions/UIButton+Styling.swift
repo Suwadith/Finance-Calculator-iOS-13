@@ -24,7 +24,7 @@ extension UIButton {
     
     /**
      On Button click perform a pulse like animation
-     * Reference: https://medium.com/better-programming/swift-uibutton-animations-6ce016212c6e
+     * [Reference](https://medium.com/better-programming/swift-uibutton-animations-6ce016212c6e)
     */
     func pulsate() {
         let pulse = CASpringAnimation(keyPath: "transform.scale")
