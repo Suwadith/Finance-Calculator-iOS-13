@@ -672,7 +672,49 @@
                     <view key="view" contentMode="scaleToFill" id="5S2-hy-aBX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSD-dh-ICp">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rR9-3a-oHw">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bhA-ye-roA">
+                                                <rect key="frame" x="20" y="19.999999999999996" width="374" height="33.666666666666657"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finance Calculator v1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAl-qE-SJQ">
+                                                        <rect key="frame" x="46.666666666666657" y="0.0" width="280.66666666666674" height="33.666666666666664"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="EAl-qE-SJQ" firstAttribute="centerX" secondItem="rR9-3a-oHw" secondAttribute="centerX" id="9IN-3f-842"/>
+                                            <constraint firstItem="bhA-ye-roA" firstAttribute="leading" secondItem="rR9-3a-oHw" secondAttribute="leading" constant="20" symbolic="YES" id="Tus-Dt-iOs"/>
+                                            <constraint firstAttribute="trailing" secondItem="bhA-ye-roA" secondAttribute="trailing" id="WMa-18-Jzh"/>
+                                            <constraint firstItem="bhA-ye-roA" firstAttribute="top" secondItem="rR9-3a-oHw" secondAttribute="top" constant="20" symbolic="YES" id="cfV-xR-ciH"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="rR9-3a-oHw" firstAttribute="height" secondItem="oSD-dh-ICp" secondAttribute="height" id="Htw-Ou-fVI"/>
+                                    <constraint firstItem="rR9-3a-oHw" firstAttribute="width" secondItem="oSD-dh-ICp" secondAttribute="width" id="SyO-cf-6CR"/>
+                                    <constraint firstItem="rR9-3a-oHw" firstAttribute="top" secondItem="oSD-dh-ICp" secondAttribute="top" id="kXJ-Cf-Rgc"/>
+                                    <constraint firstItem="rR9-3a-oHw" firstAttribute="leading" secondItem="oSD-dh-ICp" secondAttribute="leading" id="y5C-mz-0Z6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RtK-Cf-EHw" firstAttribute="bottom" secondItem="oSD-dh-ICp" secondAttribute="bottom" id="96k-DO-9z6"/>
+                            <constraint firstItem="oSD-dh-ICp" firstAttribute="leading" secondItem="RtK-Cf-EHw" secondAttribute="leading" id="9sU-yI-ufb"/>
+                            <constraint firstItem="oSD-dh-ICp" firstAttribute="top" secondItem="RtK-Cf-EHw" secondAttribute="top" id="QqR-S9-b3S"/>
+                            <constraint firstItem="RtK-Cf-EHw" firstAttribute="trailing" secondItem="oSD-dh-ICp" secondAttribute="trailing" id="jGa-7P-pxf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RtK-Cf-EHw"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Help" image="help" id="khi-s1-txf"/>
@@ -766,6 +808,6 @@
         <image name="savings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pXm-nR-07l"/>
+        <segue reference="p2r-LF-qLA"/>
     </inferredMetricsTieBreakers>
 </document>

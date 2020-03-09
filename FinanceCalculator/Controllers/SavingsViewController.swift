@@ -109,6 +109,7 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
         totalNoOfPaymentsField.text =  UserDefaults.standard.string(forKey: "savingstotalNoOfPaymentsField")
     }
     
+    ///Changes the label according to the switch movements
     @IBAction func onTimeChange(_ sender: UISwitch) {
         if(timeSwitch.isOn) {
             calculationTime.text = "End"
