@@ -45,7 +45,7 @@ class HistoryViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reusableHistoryCell")!
-        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.textAlignment = .left
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = history[indexPath.row]
         return cell

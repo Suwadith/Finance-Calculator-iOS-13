@@ -80,7 +80,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onSave(_ sender: UIBarButtonItem) {
         let defaults = UserDefaults.standard
-        let historyString = "\(mortgage.loanAmount) Mortgage Value | \(mortgage.interest) Interest Rate (%) | \(mortgage.payment) Monthly Payment | \(mortgage.numberOfYears) Number of Years (Time)"
+        let historyString = " 1. Mortgage Value - \(mortgage.loanAmount) \n 2. Interest Rate (%) - \(mortgage.interest)  \n 3. Monthly Payment - \(mortgage.payment) \n 4. Number of Years (Time) - \(mortgage.numberOfYears)"
         
         mortgage.historyStringArray.append(historyString)
         defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")

@@ -79,7 +79,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onSave(_ sender: UIBarButtonItem) {
         let defaults = UserDefaults.standard
-        let historyString = "\(loan.loanAmount) Loan Amount | \(loan.interest) Interest Rate (%) | \(loan.payment) Monthly Payment | \(loan.numberOfPayments) Number of Payments"
+        let historyString = " 1. Loan Amount - \(loan.loanAmount) \n 2. Interest Rate (%) - \(loan.interest) \n 3. Monthly Payment - \(loan.payment) \n 4. Number of Payments - \(loan.numberOfPayments)"
         
         loan.historyStringArray.append(historyString)
         defaults.set(loan.historyStringArray, forKey: "LoansHistory")

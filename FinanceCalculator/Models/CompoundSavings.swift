@@ -14,10 +14,10 @@ class CompoundSavings {
     var futureValue : Double
     var interest : Double
     var numberOfYears : Double
-    var compoundsPerYear : Double
+    var compoundsPerYear : Int
     var historyStringArray : [String]
     
-    init(presentValue: Double, futureValue: Double, interest: Double, numberOfYears: Double, compoundsPerYear : Double) {
+    init(presentValue: Double, futureValue: Double, interest: Double, numberOfYears: Double, compoundsPerYear : Int) {
         self.presentValue = presentValue
         self.futureValue = futureValue
         self.interest = interest
@@ -34,7 +34,7 @@ class CompoundSavings {
      */
     func calculatePresentValue() -> Double {
         let annualInterestRate = self.interest / 100
-        let principalValue = self.futureValue / pow(1 + (annualInterestRate / self.compoundsPerYear), self.compoundsPerYear * self.numberOfYears)
+        let principalValue = self.futureValue / pow(1 + (annualInterestRate / Double(self.compoundsPerYear)), Double(self.compoundsPerYear) * self.numberOfYears)
         
        if principalValue < 0 || principalValue.isNaN || principalValue.isInfinite {
             self.presentValue = 0.0;
@@ -55,7 +55,7 @@ class CompoundSavings {
     */
     func calculateFutureValue() -> Double {
         let annualInterestRate = self.interest / 100
-        let futureValue = self.presentValue * pow(1 + (annualInterestRate / self.compoundsPerYear), self.compoundsPerYear * self.numberOfYears)
+        let futureValue = self.presentValue * pow(1 + (annualInterestRate / Double(self.compoundsPerYear)), Double(self.compoundsPerYear) * self.numberOfYears)
         
         if futureValue < 0 || futureValue.isNaN || futureValue.isInfinite {
             self.futureValue = 0.0;
@@ -74,7 +74,7 @@ class CompoundSavings {
      * [Reference](https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php)
     */
     func calculateCompoundInterestRate() -> Double {
-        let interestRate = self.compoundsPerYear * (pow((self.futureValue / self.presentValue), (1 / (self.compoundsPerYear * self.numberOfYears))) - 1)
+        let interestRate = Double(self.compoundsPerYear) * (pow((self.futureValue / self.presentValue), (1 / (Double(self.compoundsPerYear) * self.numberOfYears))) - 1)
         
         if interestRate < 0 || interestRate.isNaN || interestRate.isInfinite {
             self.interest = 0.0;
@@ -96,7 +96,7 @@ class CompoundSavings {
     */
     func calculateNumberOfYears() -> Double {
         let annualInterestRate = self.interest / 100
-        let years = log(self.futureValue / self.presentValue) / (self.compoundsPerYear * log(1 + (annualInterestRate / self.compoundsPerYear)))
+        let years = log(self.futureValue / self.presentValue) / (Double(self.compoundsPerYear) * log(1 + (annualInterestRate / Double(self.compoundsPerYear))))
         
         if years < 0 || years.isNaN || years.isInfinite {
             self.numberOfYears = 0.0;

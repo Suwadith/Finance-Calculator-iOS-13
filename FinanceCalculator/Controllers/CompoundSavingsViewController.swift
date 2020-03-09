@@ -22,7 +22,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
     
     let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
-    var compoundSavings: CompoundSavings = CompoundSavings(presentValue: 0.0, futureValue: 0.0, interest: 0.0, numberOfYears: 0.0, compoundsPerYear: 12.0)
+    var compoundSavings: CompoundSavings = CompoundSavings(presentValue: 0.0, futureValue: 0.0, interest: 0.0, numberOfYears: 0.0, compoundsPerYear: 12)
     
     var textFields = [UITextField]()
 
@@ -83,7 +83,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         
         @IBAction func onSave(_ sender: UIBarButtonItem) {
             let defaults = UserDefaults.standard
-            let historyString = "\(compoundSavings.presentValue) Present Value | \(compoundSavings.futureValue) Future Value | \(compoundSavings.interest) Interest Rate (%) | \(compoundSavings.numberOfYears) Number of Years | \(compoundSavings.compoundsPerYear) Number of Compounds per Year"
+            let historyString = " 1. Present Value - \(compoundSavings.presentValue) \n 2. Future Value - \(compoundSavings.futureValue) \n 3. Interest Rate (%) - \(compoundSavings.interest) \n 4. Number of Years - \(compoundSavings.numberOfYears)  \n 5. Number of Compounds per Year - \(compoundSavings.compoundsPerYear)"
     
             compoundSavings.historyStringArray.append(historyString)
             defaults.set(compoundSavings.historyStringArray, forKey: "CompoundSavingsHistory")
