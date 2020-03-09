@@ -8,10 +8,6 @@
 
 import UIKit
 
-enum MortgageUnits: Int {
-    case loanAmount, interest, payment, numberOfYears
-}
-
 class MortgageViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -84,7 +80,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onSave(_ sender: UIBarButtonItem) {
         let defaults = UserDefaults.standard
-        let historyString = "\(mortgage.loanAmount) loan amount | \(mortgage.interest) interest | \(mortgage.payment) payment | \(mortgage.numberOfYears) number of years"
+        let historyString = "\(mortgage.loanAmount) Mortgage Value | \(mortgage.interest) Interest Rate (%) | \(mortgage.payment) Monthly Payment | \(mortgage.numberOfYears) Number of Years (Time)"
         
         mortgage.historyStringArray.append(historyString)
         defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")

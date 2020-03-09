@@ -28,13 +28,13 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadDefaultsData("SavingsHistory")
+        self.loadDefaultsData("CompoundSavingsHistory")
         self.customizeTextFields()
         hideKeyboardWhenTappedAround()
         addKeyboardEventListeners()
         calculateButton.styleCalculateButton()
         clearButton.styleClearButton()
-        self.keyboardView.currentView = "Savings"
+        self.keyboardView.currentView = "CompoundSavings"
        
     }
     
@@ -83,10 +83,10 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         
         @IBAction func onSave(_ sender: UIBarButtonItem) {
             let defaults = UserDefaults.standard
-    //        let historyString = "\(mortgage.loanAmount) loan amount | \(mortgage.interest) interest | \(mortgage.payment) payment | \(mortgage.numberOfYears) number of years"
-    //
-    //        mortgage.historyStringArray.append(historyString)
-    //        defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")
+            let historyString = "\(compoundSavings.presentValue) Present Value | \(compoundSavings.futureValue) Future Value | \(compoundSavings.interest) Interest Rate (%) | \(compoundSavings.numberOfYears) Number of Years | \(compoundSavings.compoundsPerYear) Number of Compounds per Year"
+    
+            compoundSavings.historyStringArray.append(historyString)
+            defaults.set(compoundSavings.historyStringArray, forKey: "CompoundSavingsHistory")
         }
         
         

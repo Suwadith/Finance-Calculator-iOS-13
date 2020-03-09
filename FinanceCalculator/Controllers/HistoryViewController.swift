@@ -23,10 +23,13 @@ class HistoryViewController : UITableViewController {
             
             if previousVC is MortgageViewController {
                 loadDefaultsData("MortgageHistory")
+            } else if previousVC is LoansViewController {
+                loadDefaultsData("LoansHistory")
+            } else if previousVC is CompoundSavingsViewController {
+                loadDefaultsData("CompoundSavingsHistory")
+            } else if previousVC is SavingsViewController {
+                loadDefaultsData("SavingsHistory")
             }
-//            }  else if previousVC is WeightController {
-//                loadDefaultsData("WeightHistory")
-//            }
         }
     }
     
