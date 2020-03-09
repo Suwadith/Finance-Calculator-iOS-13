@@ -21,7 +21,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
     
     let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
-    var loan: Loan = Loan(loanAmount: 0.0, interest: 0.0, payment: 0.0, numberoOfPayments: 0)
+    var loan: Loan = Loan(loanAmount: 0.0, interest: 0.0, payment: 0.0, numberOfPayments: 0)
     
     var textFields = [UITextField]()
     
@@ -79,7 +79,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onSave(_ sender: UIBarButtonItem) {
         let defaults = UserDefaults.standard
-        let historyString = "\(loan.loanAmount) loan amount | \(loan.interest) interest | \(loan.payment) payment | \(loan.numberoOfPayments) number of payments"
+        let historyString = "\(loan.loanAmount) loan amount | \(loan.interest) interest | \(loan.payment) payment | \(loan.numberOfPayments) number of payments"
         
         loan.historyStringArray.append(historyString)
         defaults.set(loan.historyStringArray, forKey: "LoansHistory")
@@ -107,14 +107,14 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
             
             loan.loanAmount = Double(loanAmountField.text!)!
             loan.interest = Double(interestField.text!)!
-            loan.numberoOfPayments = Int(Double(numberOfPaymentsField.text!)!)
+            loan.numberOfPayments = Int(Double(numberOfPaymentsField.text!)!)
             
             paymentField.text = String(loan.calculateMonthlyPayment())
             
         } else if loanAmountField.checkIfEmpty() == true && interestField.checkIfEmpty() == false && numberOfPaymentsField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false{
             
             
-            loan.numberoOfPayments = Int(Double(numberOfPaymentsField.text!)!)
+            loan.numberOfPayments = Int(Double(numberOfPaymentsField.text!)!)
             loan.interest = Double(interestField.text!)!
             loan.payment = Double(paymentField.text!)!
             
@@ -124,7 +124,7 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
             
             
             loan.loanAmount = Double(loanAmountField.text!)!
-            loan.numberoOfPayments = Int(Double(numberOfPaymentsField.text!)!)
+            loan.numberOfPayments = Int(Double(numberOfPaymentsField.text!)!)
             loan.payment = Double(paymentField.text!)!
             
             interestField.text = String(loan.calculateAnnualInterestRate())

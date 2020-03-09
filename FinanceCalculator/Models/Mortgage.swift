@@ -34,50 +34,49 @@ class Mortgage {
         let numberOfMonths = 12 * self.numberOfYears
         let loan = (self.payment * (pow((1 + monthlyInterestRate), numberOfMonths) - 1)) / (monthlyInterestRate * pow((1 + monthlyInterestRate), numberOfMonths))
         
-        self.loanAmount = loan.roundTo2()
-        return self.loanAmount
+        if loan < 0 || loan.isNaN || loan.isInfinite {
+            self.loanAmount = 0.0;
+            return self.loanAmount
+        } else {
+            self.loanAmount = loan.roundTo2()
+            return self.loanAmount
+        }
+        
     }
     
+    /**
+     Calculates the annual interest rate
+     * Newton-Raphson method
+     * number_of_months = number_of_years * 12
+     * [Reference](https://rinterested.github.io/statistics/newton_raphson_method.html)
+    */
     func calculateAnnualInterestRate() -> Double {
         let numberOfMonths = 12 * self.numberOfYears
-        var x = 1 + (((self.payment*numberOfMonths/self.loanAmount) - 1) / 12) // initial guess
-        // var x = 0.1;
-        let FINANCIAL_PRECISION = Double(0.000001) // 1e-6
+        var x = 1 + (((self.payment*numberOfMonths/self.loanAmount) - 1) / 12)
         
-        func F(_ x: Double) -> Double { // f(x)
-            // (loan * x * (1 + x)^n) / ((1+x)^n - 1) - pmt
-            return Double(self.loanAmount * x * pow(1 + x, numberOfMonths) / (pow(1+x, numberOfMonths) - 1) - payment);
-        }
-                            
-        func FPrime(_ x: Double) -> Double { // f'(x)
-            // (loan * (x+1)^(n-1) * ((x*(x+1)^n + (x+1)^n-n*x-x-1)) / ((x+1)^n - 1)^2)
-            let c_derivative = pow(x+1, numberOfMonths)
-            return Double(self.loanAmount * pow(x+1, numberOfMonths-1) *
-                (x * c_derivative + c_derivative - (numberOfMonths*x) - x - 1)) / pow(c_derivative - 1, 2)
+        func F(_ x: Double) -> Double {
+            let F = self.loanAmount * x * pow(1 + x, numberOfMonths) / (pow(1+x, numberOfMonths) - 1) - self.payment
+            return F;
         }
         
-        while(abs(F(x)) > FINANCIAL_PRECISION) {
-            x = x - F(x) / FPrime(x)
+        func F_Prime(_ x: Double) -> Double {
+            let F_Prime = self.loanAmount * pow(x+1, numberOfMonths-1) * (x * pow(x+1, numberOfMonths) + pow(x+1, numberOfMonths) - (numberOfMonths*x) - x - 1) / pow(pow(x+1, numberOfMonths) - 1, 2)
+            return F_Prime
         }
-
-        // Convert to yearly interest & Return as a percentage
-        // with two decimal fraction digits
-
+        
+        while(abs(F(x)) > Double(0.000001)) {
+            x = x - F(x) / F_Prime(x)
+        }
+        
         let I = Double(12 * x * 100)
-        self.interest = I
-        print("DEBUG", I)
-
-        // if the found value for I is inf or less than zero
-        // there's no interest applied
-//        if I.isNaN || I.isInfinite || I < 0 {
-//            return 0.0;
-//        } else {
-//          // this may return a value more than 100% for cases such as
-//          // where payment = 2000, terms = 12, amount = 10000  <--- unreal figures
-//          return I
-//        }
-        ///Todo
-        return self.interest
+        
+        if I < 0 || I.isNaN || I.isInfinite {
+            self.interest = 0.0;
+            return self.interest
+        } else {
+            self.interest = I.roundTo2()
+            return self.interest
+        }
     }
     
     /**
@@ -91,8 +90,15 @@ class Mortgage {
         let monthlyInterestRate = self.interest / (12 * 100)
         let numberOfMonths = 12 * self.numberOfYears
         let monthlyPayment = (self.loanAmount * monthlyInterestRate) / (1 - (pow((1 + monthlyInterestRate), numberOfMonths * -1)))
-        self.payment = monthlyPayment.roundTo2()
-        return self.payment
+        
+        if monthlyPayment < 0 || monthlyPayment.isNaN || monthlyPayment.isInfinite {
+            self.payment = 0.0;
+            return self.payment
+        } else {
+            self.payment = monthlyPayment.roundTo2()
+            return self.payment
+        }
+        
     }
     
     
@@ -106,8 +112,14 @@ class Mortgage {
     func calculateNumberOfYears() -> Double {
         let monthlyInterestRate = self.interest / (12 * 100)
         let numberOfMonths = log((self.payment / monthlyInterestRate) / ((self.payment / monthlyInterestRate) - (self.loanAmount))) / log(1 + monthlyInterestRate)
-        self.numberOfYears = (numberOfMonths / 12).roundTo2()
-        return self.numberOfYears
+        
+        if numberOfMonths < 0 || numberOfMonths.isNaN || numberOfMonths.isInfinite {
+            self.numberOfYears = 0.0;
+            return self.numberOfYears
+        } else {
+            self.numberOfYears = (numberOfMonths / 12).roundTo2()
+            return self.numberOfYears
+        }
     }
     
 }
