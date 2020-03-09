@@ -20,12 +20,16 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     
-    let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
+    ///Creation of the custom keyboard object and initializing it with it's size parameters for the popup
+    let keyboardView: KeyboardController = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
+    ///Creation of a CompoundSavings object
     var compoundSavings: CompoundSavings = CompoundSavings(presentValue: 0.0, futureValue: 0.0, interest: 0.0, numberOfYears: 0.0, compoundsPerYear: 12)
     
+    ///An array of UITextFields
     var textFields = [UITextField]()
-
+    
+    ///Initialization of the view
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadDefaultsData("CompoundSavingsHistory")
@@ -35,61 +39,63 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         calculateButton.styleCalculateButton()
         clearButton.styleClearButton()
         self.keyboardView.currentView = "CompoundSavings"
-       
+        
     }
     
     
-    
+    ///Scrlls the view accordingly to avoid blocking text fields
     override func keyboardWillChange(notification: Notification) {
-            
-            guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
-            
-            if notification.name == UIResponder.keyboardWillShowNotification || notification.name ==  UIResponder.keyboardWillChangeFrameNotification {
-                ///scroll the view and prevent hiding the current selected text field
-                scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
-            } else {
-                ///get back to the deafult position when tapped away
-                scrollView.contentInset = UIEdgeInsets.zero
-            }
+        
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
+        
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name ==  UIResponder.keyboardWillChangeFrameNotification {
+            ///scroll the view and prevent hiding the current selected text field
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
+        } else {
+            ///get back to the deafult position when tapped away
+            scrollView.contentInset = UIEdgeInsets.zero
         }
-        
-        
-        func loadDefaultsData(_ historyKey :String) {
-            let defaults = UserDefaults.standard
-            compoundSavings.historyStringArray = defaults.object(forKey: historyKey) as? [String] ?? [String]()
-        }
-        
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-            keyboardView.activeTextField = textField
-        }
-        
-        func customizeTextFields() {
-            textFields = [presentValueField, futureValueField, interestField, numberOfYearsField, compoundsPerYearField]
-            for tf in textFields {
-                tf.styleTextField()
-                tf.setCustomKeyboard(self.keyboardView)
-                tf.assignDelegates(self)
-                //            tf.glowEmptyTextFields()
-            }
-        }
-        
-        func clearAllField() {
-            for tf in self.textFields {
-                tf.clearField()
-            }
-        }
-        
-        
-        
-        @IBAction func onSave(_ sender: UIBarButtonItem) {
-            let defaults = UserDefaults.standard
-            let historyString = " 1. Present Value - \(compoundSavings.presentValue) \n 2. Future Value - \(compoundSavings.futureValue) \n 3. Interest Rate (%) - \(compoundSavings.interest) \n 4. Number of Years - \(compoundSavings.numberOfYears)  \n 5. Number of Compounds per Year - \(compoundSavings.compoundsPerYear)"
+    }
     
-            compoundSavings.historyStringArray.append(historyString)
-            defaults.set(compoundSavings.historyStringArray, forKey: "CompoundSavingsHistory")
+    ///Uses UserDefaults to create a persistant storage for the app
+    func loadDefaultsData(_ historyKey :String) {
+        let defaults = UserDefaults.standard
+        compoundSavings.historyStringArray = defaults.object(forKey: historyKey) as? [String] ?? [String]()
+    }
+    
+    ///Captures currently touched UITextField and sets  the custom keyboard as the default input device
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        keyboardView.activeTextField = textField
+    }
+    
+    ///A loop to customize multiple text fields at the same time using swift extensions
+    func customizeTextFields() {
+        textFields = [presentValueField, futureValueField, interestField, numberOfYearsField, compoundsPerYearField]
+        for tf in textFields {
+            tf.styleTextField()
+            tf.setCustomKeyboard(self.keyboardView)
+            tf.assignDelegates(self)
         }
+    }
+    
+    ///Clears all the text fields (Except for the last one where the number of compounds is always a fixed value)
+    func clearAllField() {
+        for tf in 0..<self.textFields.count-1 {
+            self.textFields[tf].clearField()
+        }
+    }
+    
+    
+    ///Writes all the  current textfield values to the persistant storage
+    @IBAction func onSave(_ sender: UIBarButtonItem) {
+        let defaults = UserDefaults.standard
+        let historyString = " 1. Present Value - \(compoundSavings.presentValue) \n 2. Future Value - \(compoundSavings.futureValue) \n 3. Interest Rate (%) - \(compoundSavings.interest) \n 4. Number of Years - \(compoundSavings.numberOfYears)  \n 5. Number of Compounds per Year - \(compoundSavings.compoundsPerYear)"
         
-        
+        compoundSavings.historyStringArray.append(historyString)
+        defaults.set(compoundSavings.historyStringArray, forKey: "CompoundSavingsHistory")
+    }
+    
+    ///Calculates the appropriate values requested y the user
     @IBAction func onCalculate(_ sender: UIButton) {
         sender.pulsate()
         dismissKeyboard()
@@ -135,15 +141,15 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+    
+    ///Clears button function
+    @IBAction func onClear(_ sender: UIButton) {
+        sender.pulsate()
+        dismissKeyboard()
+        clearAllField()
         
-        
-        
-        @IBAction func onClear(_ sender: UIButton) {
-            sender.pulsate()
-            dismissKeyboard()
-            clearAllField()
-            
-        }
-   
-
+    }
+    
+    
 }

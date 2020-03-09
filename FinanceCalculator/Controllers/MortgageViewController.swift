@@ -18,13 +18,16 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     
-    let keyboardView = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
+    ///Creation of the custom keyboard object and initializing it with it's size parameters for the popup
+    let keyboardView: KeyboardController = KeyboardController(frame: CGRect(x: 0, y: 0, width: 0, height: 250))
     
+    ///Creation of a Mortgage object
     var mortgage: Mortgage = Mortgage(loanAmount: 0.0, interest: 0.0, payment: 0.0, numberOfYears: 0.0)
     
+    ///An array of UITextFields
     var textFields = [UITextField]()
     
-    
+    ///Initialization of the view
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadDefaultsData("MortgageHistory")
@@ -37,6 +40,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    ///Scrlls the view accordingly to avoid blocking text fields
     override func keyboardWillChange(notification: Notification) {
         
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
@@ -50,26 +54,28 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+    ///Uses UserDefaults to create a persistant storage for the app
     func loadDefaultsData(_ historyKey :String) {
         let defaults = UserDefaults.standard
         mortgage.historyStringArray = defaults.object(forKey: historyKey) as? [String] ?? [String]()
     }
     
+    ///Captures currently touched UITextField and sets  the custom keyboard as the default input device
     func textFieldDidBeginEditing(_ textField: UITextField) {
         keyboardView.activeTextField = textField
     }
     
+    ///A loop to customize multiple text fields at the same time using swift extensions
     func customizeTextFields() {
         textFields = [loanAmountField, interestField, paymentField, numberOfYearsField]
         for tf in textFields {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
-            //            tf.glowEmptyTextFields()
         }
     }
     
+    ///Clears all the text fields
     func clearAllField() {
         for tf in self.textFields {
             tf.clearField()
@@ -77,7 +83,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    
+    ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
         let defaults = UserDefaults.standard
         let historyString = " 1. Mortgage Value - \(mortgage.loanAmount) \n 2. Interest Rate (%) - \(mortgage.interest)  \n 3. Monthly Payment - \(mortgage.payment) \n 4. Number of Years (Time) - \(mortgage.numberOfYears)"
@@ -86,7 +92,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")
     }
     
-    
+    ///Calculates the appropriate values requested y the user
     @IBAction func onCalculate(_ sender: UIButton) {
         sender.pulsate()
         dismissKeyboard()
@@ -139,7 +145,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    
+    ///Clears button function
     @IBAction func onClear(_ sender: UIButton) {
         sender.pulsate()
         dismissKeyboard()
