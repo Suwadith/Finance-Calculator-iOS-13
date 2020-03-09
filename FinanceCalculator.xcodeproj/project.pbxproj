@@ -17,7 +17,7 @@
 		14B9663D240A767100D3FB49 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B9663C240A767100D3FB49 /* Keyboard.xib */; };
 		14D25B872413D83500E66461 /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B862413D83500E66461 /* Loan.swift */; };
 		14D25B892413D84000E66461 /* Savings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B882413D84000E66461 /* Savings.swift */; };
-		14D25B8B2413D85000E66461 /* CompundSavings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B8A2413D85000E66461 /* CompundSavings.swift */; };
+		14D25B8B2413D85000E66461 /* CompoundSavings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B8A2413D85000E66461 /* CompoundSavings.swift */; };
 		14D25B8D2413D8A500E66461 /* LoansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B8C2413D8A500E66461 /* LoansViewController.swift */; };
 		14D25B8F2413D8C000E66461 /* SavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B8E2413D8C000E66461 /* SavingsViewController.swift */; };
 		14D25B912413D8D200E66461 /* CompoundSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B902413D8D200E66461 /* CompoundSavingsViewController.swift */; };
@@ -46,7 +46,7 @@
 		14B9663C240A767100D3FB49 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		14D25B862413D83500E66461 /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
 		14D25B882413D84000E66461 /* Savings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savings.swift; sourceTree = "<group>"; };
-		14D25B8A2413D85000E66461 /* CompundSavings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompundSavings.swift; sourceTree = "<group>"; };
+		14D25B8A2413D85000E66461 /* CompoundSavings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSavings.swift; sourceTree = "<group>"; };
 		14D25B8C2413D8A500E66461 /* LoansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoansViewController.swift; sourceTree = "<group>"; };
 		14D25B8E2413D8C000E66461 /* SavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsViewController.swift; sourceTree = "<group>"; };
 		14D25B902413D8D200E66461 /* CompoundSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSavingsViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 				14DD5D822410EFD700DF73D1 /* Mortgage.swift */,
 				14D25B862413D83500E66461 /* Loan.swift */,
 				14D25B882413D84000E66461 /* Savings.swift */,
-				14D25B8A2413D85000E66461 /* CompundSavings.swift */,
+				14D25B8A2413D85000E66461 /* CompoundSavings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,7 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14D25B8F2413D8C000E66461 /* SavingsViewController.swift in Sources */,
-				14D25B8B2413D85000E66461 /* CompundSavings.swift in Sources */,
+				14D25B8B2413D85000E66461 /* CompoundSavings.swift in Sources */,
 				14DD5D8C2411657F00DF73D1 /* UITextField+Styling.swift in Sources */,
 				14DD5D832410EFD700DF73D1 /* Mortgage.swift in Sources */,
 				14DD5D8E241165FF00DF73D1 /* UITextField+Keyboard+Delegates.swift in Sources */,

@@ -44,6 +44,12 @@ class Loan {
         }
     }
     
+    /**
+     Calculates the annual interest rate
+     * Newton-Raphson method
+     * number_of_months = number_of_payments
+     * [Reference](https://rinterested.github.io/statistics/newton_raphson_method.html)
+    */
     func calculateAnnualInterestRate() -> Double {
         let numberOfMonths = Double(self.numberOfPayments)
         var x = 1 + (((self.payment*numberOfMonths/self.loanAmount) - 1) / 12)
