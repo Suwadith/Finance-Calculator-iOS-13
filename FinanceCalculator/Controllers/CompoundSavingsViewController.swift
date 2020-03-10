@@ -82,6 +82,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    ///Adds an icon at the beginning of a textfield
     func addTextFieldIcons() {
         presentValueField.setIcon(UIImage(named: "money")!)
         interestField.setIcon(UIImage(named: "percentage")!)
