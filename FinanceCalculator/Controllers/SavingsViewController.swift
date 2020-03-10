@@ -81,6 +81,9 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
+            if tf == compoundsPerYearField || tf == paymentsPerYearField{
+                tf.greyedTextField()
+            }
         }
     }
     

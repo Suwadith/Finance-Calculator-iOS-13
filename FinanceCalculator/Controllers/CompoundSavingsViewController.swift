@@ -74,6 +74,9 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
+            if tf == compoundsPerYearField {
+                tf.greyedTextField()
+            }
         }
     }
     

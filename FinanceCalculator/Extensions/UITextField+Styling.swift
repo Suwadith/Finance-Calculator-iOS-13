@@ -21,6 +21,10 @@ extension UITextField {
         self.text = ""
     }
     
+    func greyedTextField() {
+        self.backgroundColor = UIColor.lightGray
+    }
+    
 //    func glowEmptyTextFields() {
 //        if self.text == "" {
 //            self.layer.borderColor = UIColor.red.cgColor
