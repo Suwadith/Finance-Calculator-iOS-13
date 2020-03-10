@@ -6,6 +6,8 @@
 //  Copyright © 2020 Suwadith. All rights reserved.
 //
 
+// All these equations were tested using: https://www.calculatorsoup.com/calculators/financial/savings-calculator.php
+
 import Foundation
 
 class Savings {
@@ -19,6 +21,7 @@ class Savings {
     var totalNumberOfPayments: Int
     var historyStringArray : [String]
     
+    
     init(principalAmount: Double, interest: Double, payment: Double, compoundsPerYear: Int, paymentsPerYear: Int, futureValue: Double, totalNumberOfPayments: Int) {
         self.principalAmount = principalAmount
         self.interest = interest
@@ -30,7 +33,13 @@ class Savings {
         self.historyStringArray = [String]()
     }
     
-    
+    /**
+     Calculates end current savings value
+     * annual_interest_rate (in decimal) = yearly_interest_rate / 100
+     * number_of_years = number_of_payments / 12
+     * current_principal_value  = (future_value - (monthly_deposit * ((pow((1 + annual_interest_rate/compounds_per_year), (compounds_per_year*numberOfYears)) - 1) / (annual_interest_rate/compounds_per_year)))) / (pow(1+(annual_interest_rate/compounds_per_year), (compounds_per_year*numberOfYears)))
+     * Reference : Coursework Document
+     */
     func calculateEndPrincipalAmount() -> Double {
         let decimalInterest = self.interest/100
         let numberOfYears = Double(self.totalNumberOfPayments)/12
@@ -47,6 +56,13 @@ class Savings {
         
     }
     
+    /**
+    Calculates beginning current savings value
+    * annual_interest_rate (in decimal) = yearly_interest_rate / 100
+    * number_of_years = number_of_payments / 12
+    * current_principal_value  = (future_value - (monthly_deposit * ((pow((1 + annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years)) - 1) / (annual_interest_rate/compounds_per_year)) * (1 + (annual_interest_rate/compounds_per_year)))) / (pow(1+(annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years)))
+    * Reference : Coursework Document
+    */
     func calculateBeginningPrincipalAmount() -> Double {
         let decimalInterest = self.interest/100
         let numberOfYears = Double(self.totalNumberOfPayments)/12
@@ -63,7 +79,13 @@ class Savings {
         
     }
     
-    
+    /**
+    Calculates end monthly deposit value
+    * annual_interest_rate (in decimal) = yearly_interest_rate / 100
+    * number_of_years = number_of_payments / 12
+    * monthly_deposit  = (future_value - (principal_amount * (pow(1+(annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years))))) / ((pow((1 + annual_interest_rate/compounds_per_year), (compounds*number_of_years)) - 1) / (annual_interest_rate/compounds_per_year))
+    * Reference : Coursework Document
+    */
     func calculateEndPayment() -> Double {
         let decimalInterest = self.interest/100
         let numberOfYears = Double(self.totalNumberOfPayments)/12
@@ -79,6 +101,13 @@ class Savings {
         }
     }
     
+    /**
+    Calculates beginning monthly deposit value
+    * annual_interest_rate (in decimal) = yearly_interest_rate / 100
+    * number_of_years = number_of_payments / 12
+    * monthly_deposit  = ((future_value - (principal_amount * (pow(1+(annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years))))) / (((pow((1 + annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years)) - 1) / (annual_interest_rate/compounds_per_year)) * (1 + (annual_interest_rate/compounds_per_year)))
+    * Reference : Coursework Document
+    */
     func calculateBeginningPayment() -> Double {
         let decimalInterest = self.interest/100
         let numberOfYears = Double(self.totalNumberOfPayments)/12
@@ -94,6 +123,13 @@ class Savings {
         }
     }
     
+    /**
+    Calculates end future value
+    * annual_interest_rate (in decimal) = yearly_interest_rate / 100
+    * number_of_years = number_of_payments / 12
+    * future_value  = (principal_amount * (pow(1+(annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years)))) + (monthly_deposit * ((pow((1 + annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years)) - 1) / (annual_interest_rate/compounds_per_year)))
+    * Reference : Coursework Document
+    */
     func calculateEndFutureValue() -> Double {
         let decimalInterest = self.interest/100
         let numberOfYears = Double(self.totalNumberOfPayments)/12
@@ -109,6 +145,13 @@ class Savings {
         }
     }
     
+    /**
+    Calculates beginning future value
+    * annual_interest_rate (in decimal) = yearly_interest_rate / 100
+    * number_of_years = number_of_payments / 12
+    * future_value  = (principal_amount * (pow(1+(annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years)))) + (monthly_deposit* ((pow((1 + annual_interest_rate/compounds_per_year), (compounds_per_year*number_of_years)) - 1) / (annual_interest_rate/compounds_per_year)) * (1 + (annual_interest_rate/compounds_per_year)))
+    * Reference : Coursework Document
+    */
     func calculateBeginningFutureValue() -> Double {
         let decimalInterest = self.interest/100
         let numberOfYears = Double(self.totalNumberOfPayments)/12
@@ -125,6 +168,13 @@ class Savings {
         
     }
     
+    /**
+    Calculates end number of payments
+    * annual_interest_rate (in decimal) = yearly_interest_rate / 100
+    * number_of_years  = (log(future_value+ ((monthly_deposit*compounds_per_year)/annual_interest_rate)) - log(((annual_interest_rate*principal_amount) + (monthly_deposit*compounds_per_year)) / annual_interest_rate)) / (compounds_per_year * log(1+(annual_interest_rate/compounds_per_year)))
+    * number_of_payments = number_of_years * 12
+    * Reference : Coursework Document
+    */
     func calculateEndNumberOfPayments() -> Int {
         let decimalInterest = self.interest/100
         let compounds = Double(self.compoundsPerYear)
@@ -140,6 +190,13 @@ class Savings {
         }
     }
     
+    /**
+    Calculates end number of payments
+    * annual_interest_rate (in decimal) = yearly_interest_rate / 100
+    * number_of_years  = ((log(future_value + monthly_deposit + ((monthly_deposit * compounds_per_year) / annual_interest_rate)) - log(principal_amount + monthly_deposit + ((monthly_deposit* compounds_per_year) / annual_interest_rate))) / (compounds_per_year * log(1 + (annual_interest_rate / compounds_per_year))))
+    * number_of_payments = number_of_years * 12
+    * Reference : Coursework Document
+    */
     func calculateBeginningNumberOfPayments() -> Int {
         let decimalInterest = self.interest/100
         let compounds = Double(self.compoundsPerYear)

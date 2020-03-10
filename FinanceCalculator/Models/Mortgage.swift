@@ -6,6 +6,8 @@
 //  Copyright © 2020 Suwadith. All rights reserved.
 //
 
+// All these equations were tested using: https://www.calculatorsoup.com/calculators/financial/mortgage-calculator.php
+
 import Foundation
 
 class Mortgage {

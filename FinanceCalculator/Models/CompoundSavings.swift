@@ -5,6 +5,7 @@
 //  Created by Suwadith on 3/7/20.
 //  Copyright © 2020 Suwadith. All rights reserved.
 //
+// All these equations were tested using: https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php
 
 import Foundation
 
