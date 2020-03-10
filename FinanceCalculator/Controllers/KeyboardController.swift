@@ -58,16 +58,6 @@ class KeyboardController: UIView {
                     setCursorPosition(from: cursorPosition, offset: -1)
                 }
                 
-//            case .negation:
-//                if currentView != "Mortgage" {
-//                    if !currentText.contains("-"), currentText.count != 0 {
-//                        activeTextField.text?.insert("-", at: currentText.index(currentText.startIndex, offsetBy: 0))
-//                        activeTextField.sendActions(for: UIControl.Event.editingChanged)
-//                        setCursorPosition(from: cursorPosition)
-//                    }
-//                } else {
-//                    print(currentView)
-//                }
             default:
                 activeTextField.insertText(String(sender.tag))
                 setCursorPosition(from: cursorPosition)
