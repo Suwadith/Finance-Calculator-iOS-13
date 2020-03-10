@@ -38,6 +38,7 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
         clearButton.styleClearButton()
         self.keyboardView.currentView = "Mortgage"
         populateTextFields()
+        addTextFieldIcons()
     }
     
     ///Scrlls the view accordingly to avoid blocking text fields
@@ -72,7 +73,15 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
             tf.styleTextField()
             tf.setCustomKeyboard(self.keyboardView)
             tf.assignDelegates(self)
+            tf.tintColor = UIColor.black
         }
+    }
+    
+    func addTextFieldIcons() {
+        loanAmountField.setIcon(UIImage(named: "money")!)
+        interestField.setIcon(UIImage(named: "percentage")!)
+        paymentField.setIcon(UIImage(named: "money")!)
+        numberOfYearsField.setIcon(UIImage(named: "time")!)
     }
     
     ///Clears all the text fields

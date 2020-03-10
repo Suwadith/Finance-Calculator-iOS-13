@@ -39,6 +39,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
         clearButton.styleClearButton()
         self.keyboardView.currentView = "CompoundSavings"
         populateTextFields()
+        addTextFieldIcons()
     }
     
     
@@ -77,7 +78,16 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
             if tf == compoundsPerYearField {
                 tf.greyedTextField()
             }
+            tf.tintColor = UIColor.black
         }
+    }
+    
+    func addTextFieldIcons() {
+        presentValueField.setIcon(UIImage(named: "money")!)
+        interestField.setIcon(UIImage(named: "percentage")!)
+        futureValueField.setIcon(UIImage(named: "money")!)
+        numberOfYearsField.setIcon(UIImage(named: "time")!)
+        compoundsPerYearField.setIcon(UIImage(named: "scale")!)
     }
     
     ///Clears all the text fields (Except for the last one where the number of compounds is always a fixed value)

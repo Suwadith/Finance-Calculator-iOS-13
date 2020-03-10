@@ -47,6 +47,7 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
         clearButton.styleClearButton()
         self.keyboardView.currentView = "Savings"
         populateTextFields()
+        addTextFieldIcons()
     }
     
     ///Scrlls the view accordingly to avoid blocking text fields
@@ -84,7 +85,18 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
             if tf == compoundsPerYearField || tf == paymentsPerYearField{
                 tf.greyedTextField()
             }
+            tf.tintColor = UIColor.black
         }
+    }
+    
+    func addTextFieldIcons() {
+        principalAmountField.setIcon(UIImage(named: "money")!)
+        interestField.setIcon(UIImage(named: "percentage")!)
+        paymentField.setIcon(UIImage(named: "money")!)
+        futureValueField.setIcon(UIImage(named: "money")!)
+        totalNoOfPaymentsField.setIcon(UIImage(named: "time")!)
+        compoundsPerYearField.setIcon(UIImage(named: "scale")!)
+        paymentsPerYearField.setIcon(UIImage(named: "scale")!)
     }
     
     ///Clears all the text fields
