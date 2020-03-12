@@ -126,7 +126,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="o2u-LZ-deK" firstAttribute="trailing" secondItem="lgZ-g4-LoQ" secondAttribute="trailing" id="CxG-gR-gdL"/>
                             <constraint firstItem="lgZ-g4-LoQ" firstAttribute="leading" secondItem="o2u-LZ-deK" secondAttribute="leading" id="TXh-FF-Afs"/>
@@ -288,7 +288,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Idi-0K-sQ8" firstAttribute="leading" secondItem="AZB-wM-7jn" secondAttribute="leading" id="S7g-AA-EeT"/>
                             <constraint firstItem="Idi-0K-sQ8" firstAttribute="top" secondItem="AZB-wM-7jn" secondAttribute="top" id="Ve5-d5-gl7"/>
@@ -479,7 +479,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GC4-k2-bTm" firstAttribute="bottom" secondItem="as4-Il-3fm" secondAttribute="bottom" id="2zv-S2-ugV"/>
                             <constraint firstItem="as4-Il-3fm" firstAttribute="top" secondItem="GC4-k2-bTm" secondAttribute="top" id="DJZ-ZZ-fXh"/>
@@ -630,7 +630,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JkS-f4-vLj" firstAttribute="leading" secondItem="AR0-Pv-Vzn" secondAttribute="leading" id="AD5-R6-eaj"/>
                             <constraint firstItem="AR0-Pv-Vzn" firstAttribute="bottom" secondItem="JkS-f4-vLj" secondAttribute="bottom" id="Ht3-kR-ZvV"/>
@@ -1023,7 +1023,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RtK-Cf-EHw" firstAttribute="bottom" secondItem="oSD-dh-ICp" secondAttribute="bottom" id="96k-DO-9z6"/>
                             <constraint firstItem="oSD-dh-ICp" firstAttribute="leading" secondItem="RtK-Cf-EHw" secondAttribute="leading" id="9sU-yI-ufb"/>

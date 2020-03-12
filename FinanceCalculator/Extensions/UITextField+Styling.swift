@@ -14,6 +14,7 @@ extension UITextField {
     /// Adds a box border with a particular border width
     func styleTextField() {
         self.layer.borderWidth = 1.5
+        self.layer.cornerRadius = 5.0
     }
     
     /// Clears text fields

@@ -14,24 +14,50 @@ enum KeyboardButton: Int {
 class KeyboardController: UIView {
     
     var currentView = ""
-
+    
+    @IBOutlet weak var keyboardBtn1: UIButton!
+    @IBOutlet weak var keyboardBtn2: UIButton!
+    @IBOutlet weak var keyboardBtn3: UIButton!
+    @IBOutlet weak var keyboardBtn4: UIButton!
+    @IBOutlet weak var keyboardBtn5: UIButton!
+    @IBOutlet weak var keyboardBtn6: UIButton!
+    @IBOutlet weak var keyboardBtn7: UIButton!
+    @IBOutlet weak var keyboardBtn8: UIButton!
+    @IBOutlet weak var keyboardBtn9: UIButton!
+    @IBOutlet weak var keyboardBtnPoint: UIButton!
+    @IBOutlet weak var keyboardBtn0: UIButton!
+    @IBOutlet weak var keyboardBtnDelete: UIButton!
+    
+    var keyboardButtons = [UIButton()]
+    
     ///Popup keyboard initialization
     ///Credit: https://stackoverflow.com/questions/33474771/a-swift-example-of-custom-views-for-data-input-custom-in-app-keyboard/33692231#33692231
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initializeSubviews()
+        styleKeyboardButtons()
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         initializeSubviews()
+        styleKeyboardButtons()
     }
 
     func initializeSubviews() {
-        let xibFileName = "Keyboard" // xib extention not included
+        let xibFileName = "Keyboard"
         let view = Bundle.main.loadNibNamed(xibFileName, owner: self, options: nil)![0] as! UIView
         self.addSubview(view)
         view.frame = self.bounds
+    }
+    
+    func styleKeyboardButtons() {
+        keyboardButtons = [keyboardBtn0, keyboardBtn1, keyboardBtn2, keyboardBtn3, keyboardBtn4, keyboardBtn5, keyboardBtn6, keyboardBtn7, keyboardBtn8, keyboardBtn9, keyboardBtnPoint, keyboardBtnDelete]
+        
+        for button in keyboardButtons {
+            button.styleKeyboardButtons()
+        }
+        
     }
     
     var activeTextField = UITextField()

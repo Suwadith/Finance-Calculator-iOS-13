@@ -43,7 +43,7 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    ///Scrlls the view accordingly to avoid blocking text fields
+    ///Scrolls the view accordingly to avoid blocking text fields
     override func keyboardWillChange(notification: Notification) {
         
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}

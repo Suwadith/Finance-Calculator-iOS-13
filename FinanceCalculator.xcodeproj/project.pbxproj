@@ -13,6 +13,7 @@
 		1419453624079F5A00A2E20E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1419453424079F5A00A2E20E /* Main.storyboard */; };
 		1419453824079F5C00A2E20E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1419453724079F5C00A2E20E /* Assets.xcassets */; };
 		1419453B24079F5C00A2E20E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1419453924079F5C00A2E20E /* LaunchScreen.storyboard */; };
+		14703963241A5A7300A4BD03 /* UIButton+Keyboard+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14703962241A5A7300A4BD03 /* UIButton+Keyboard+Styling.swift */; };
 		14B96637240A74C600D3FB49 /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B96636240A74C600D3FB49 /* KeyboardController.swift */; };
 		14B9663D240A767100D3FB49 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B9663C240A767100D3FB49 /* Keyboard.xib */; };
 		14D25B872413D83500E66461 /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D25B862413D83500E66461 /* Loan.swift */; };
@@ -42,6 +43,7 @@
 		1419453724079F5C00A2E20E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1419453A24079F5C00A2E20E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1419453C24079F5C00A2E20E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14703962241A5A7300A4BD03 /* UIButton+Keyboard+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Keyboard+Styling.swift"; sourceTree = "<group>"; };
 		14B96636240A74C600D3FB49 /* KeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
 		14B9663C240A767100D3FB49 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		14D25B862413D83500E66461 /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				14D4CDB52412EED10015523E /* UITextField+Validations.swift */,
 				14D4CDB72412F5570015523E /* UIViewController+Alerts.swift */,
 				14D25B9224149BDE00E66461 /* Double+Round.swift */,
+				14703962241A5A7300A4BD03 /* UIButton+Keyboard+Styling.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				14D25B8D2413D8A500E66461 /* LoansViewController.swift in Sources */,
 				14D4CDB82412F5570015523E /* UIViewController+Alerts.swift in Sources */,
 				1419452F24079F5A00A2E20E /* AppDelegate.swift in Sources */,
+				14703963241A5A7300A4BD03 /* UIButton+Keyboard+Styling.swift in Sources */,
 				1419453124079F5A00A2E20E /* SceneDelegate.swift in Sources */,
 				14D25B872413D83500E66461 /* Loan.swift in Sources */,
 			);
