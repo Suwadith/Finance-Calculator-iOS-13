@@ -117,11 +117,37 @@ class CompoundSavingsViewController: UIViewController, UITextFieldDelegate {
     
     ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
-        let defaults = UserDefaults.standard
-        let historyString = " 1. Present Value - \(compoundSavings.presentValue) \n 2. Future Value - \(compoundSavings.futureValue) \n 3. Interest Rate (%) - \(compoundSavings.interest) \n 4. Number of Years - \(compoundSavings.numberOfYears)  \n 5. Number of Compounds per Year - \(compoundSavings.compoundsPerYear)"
         
-        compoundSavings.historyStringArray.append(historyString)
-        defaults.set(compoundSavings.historyStringArray, forKey: "CompoundSavingsHistory")
+        ///Makes sure that none of the textfields are empty
+        if presentValueField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false {
+            
+            ///Makes sure that the object is not holding empty values
+            if(compoundSavings.presentValue != 0 && compoundSavings.futureValue != 0 && compoundSavings.interest != 0 && compoundSavings.numberOfYears != 0) {
+                
+                let defaults = UserDefaults.standard
+                let historyString = " 1. Present Value - \(compoundSavings.presentValue) \n 2. Future Value - \(compoundSavings.futureValue) \n 3. Interest Rate (%) - \(compoundSavings.interest) \n 4. Number of Years - \(compoundSavings.numberOfYears)  \n 5. Number of Compounds per Year - \(compoundSavings.compoundsPerYear)"
+                
+                ///Resets the object to default values as soon as a save operation is done (to prevent re-saving values without making another calculation)
+                (compoundSavings.presentValue, compoundSavings.futureValue, compoundSavings.interest, compoundSavings.numberOfYears) = (0,0,0,0)
+                
+                ///Makes sure that the history list only holds last 5 calculations
+                if(compoundSavings.historyStringArray.count > 4) {
+                    compoundSavings.historyStringArray.removeFirst()
+                    compoundSavings.historyStringArray.append(historyString)
+                    defaults.set(compoundSavings.historyStringArray, forKey: "CompoundSavingsHistory")
+                } else {
+                    compoundSavings.historyStringArray.append(historyString)
+                    defaults.set(compoundSavings.historyStringArray, forKey: "CompoundSavingsHistory")
+                }
+                
+            } else {
+                showAlert(title: "Error", msg: "Cannot save values without making a valid calculation")
+            }
+            
+        } else {
+            showAlert(title: "Error", msg: "Cannot save values with empty fields")
+        }
+        
     }
     
     ///Calculates the appropriate values requested y the user

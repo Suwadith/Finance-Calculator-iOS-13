@@ -112,11 +112,38 @@ class MortgageViewController: UIViewController, UITextFieldDelegate {
     
     ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
-        let defaults = UserDefaults.standard
-        let historyString = " 1. Mortgage Value - \(mortgage.loanAmount) \n 2. Interest Rate (%) - \(mortgage.interest)  \n 3. Monthly Payment - \(mortgage.payment) \n 4. Number of Years (Time) - \(mortgage.numberOfYears)"
         
-        mortgage.historyStringArray.append(historyString)
-        defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")
+        ///Makes sure that none of the textfields are empty
+        if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && numberOfYearsField.checkIfEmpty() == false {
+            
+            ///Makes sure that the object is not holding empty values
+            if(mortgage.loanAmount != 0 && mortgage.interest != 0 && mortgage.payment != 0 && mortgage.numberOfYears != 0) {
+                
+                let defaults = UserDefaults.standard
+                let historyString = " 1. Mortgage Value - \(mortgage.loanAmount) \n 2. Interest Rate (%) - \(mortgage.interest)  \n 3. Monthly Payment - \(mortgage.payment) \n 4. Number of Years (Time) - \(mortgage.numberOfYears)"
+                
+                ///Resets the object to default values as soon as a save operation is done (to prevent re-saving values without making another calculation)
+                (mortgage.loanAmount, mortgage.interest, mortgage.payment, mortgage.numberOfYears) = (0,0,0,0)
+                
+                ///Makes sure that the history list only holds last 5 calculations
+                if(mortgage.historyStringArray.count > 4) {
+                    mortgage.historyStringArray.removeFirst()
+                    mortgage.historyStringArray.append(historyString)
+                    defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")
+                } else {
+                    mortgage.historyStringArray.append(historyString)
+                    defaults.set(mortgage.historyStringArray, forKey: "MortgageHistory")
+                }
+                
+            } else {
+                showAlert(title: "Error", msg: "Cannot save values without making a valid calculation")
+            }
+        } else {
+            showAlert(title: "Error", msg: "Cannot save values with empty fields")
+        }
+        
+        
+        
     }
     
     ///Calculates the appropriate values requested y the user

@@ -137,11 +137,37 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
     
     ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
-        let defaults = UserDefaults.standard
-        let historyString = " 1. Principal Amount - \(savings.principalAmount) \n 2. Interest Rate (%) - \(savings.interest) \n 3. Deposit - \(savings.payment) \n 4. Number of Compounds per Year - \(savings.compoundsPerYear)  \n 5. Number of Deposits per Year - \(savings.paymentsPerYear) \n 6. Future Value - \(savings.futureValue) \n 7. Total number of Deposits - \(savings.totalNumberOfPayments) \n 8. Deposit made at the - \(calculationTime.text!)"
         
-        savings.historyStringArray.append(historyString)
-        defaults.set(savings.historyStringArray, forKey: "SavingsHistory")
+        ///Makes sure that none of the textfields are empty
+        if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == false {
+            
+            ///Makes sure that the object is not holding empty values
+            if(savings.principalAmount != 0 && savings.interest != 0 && savings.payment != 0 && savings.futureValue != 0 && savings.totalNumberOfPayments != 0) {
+                
+                let defaults = UserDefaults.standard
+                let historyString = " 1. Principal Amount - \(savings.principalAmount) \n 2. Interest Rate (%) - \(savings.interest) \n 3. Deposit - \(savings.payment) \n 4. Number of Compounds per Year - \(savings.compoundsPerYear)  \n 5. Number of Deposits per Year - \(savings.paymentsPerYear) \n 6. Future Value - \(savings.futureValue) \n 7. Total number of Deposits - \(savings.totalNumberOfPayments) \n 8. Deposit made at the - \(calculationTime.text!)"
+                
+                ///Resets the object to default values as soon as a save operation is done (to prevent re-saving values without making another calculation)
+                (savings.principalAmount, savings.interest, savings.payment, savings.futureValue, savings.totalNumberOfPayments) = (0,0,0,0,0)
+                
+                ///Makes sure that the history list only holds last 5 calculations
+                if(savings.historyStringArray.count > 4) {
+                    savings.historyStringArray.removeFirst()
+                    savings.historyStringArray.append(historyString)
+                    defaults.set(savings.historyStringArray, forKey: "SavingsHistory")
+                } else {
+                    savings.historyStringArray.append(historyString)
+                    defaults.set(savings.historyStringArray, forKey: "SavingsHistory")
+                }
+                
+            } else {
+                showAlert(title: "Error", msg: "Cannot save values without making a valid calculation")
+            }
+            
+        } else {
+            showAlert(title: "Error", msg: "Cannot save values with empty fields")
+        }
+        
     }
     
     ///Calculates the appropriate values requested y the user

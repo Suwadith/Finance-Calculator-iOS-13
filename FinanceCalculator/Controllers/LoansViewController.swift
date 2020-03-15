@@ -112,11 +112,36 @@ class LoansViewController: UIViewController, UITextFieldDelegate {
     
     ///Writes all the  current textfield values to the persistant storage
     @IBAction func onSave(_ sender: UIBarButtonItem) {
-        let defaults = UserDefaults.standard
-        let historyString = " 1. Loan Amount - \(loan.loanAmount) \n 2. Interest Rate (%) - \(loan.interest) \n 3. Monthly Payment - \(loan.payment) \n 4. Number of Payments - \(loan.numberOfPayments)"
         
-        loan.historyStringArray.append(historyString)
-        defaults.set(loan.historyStringArray, forKey: "LoansHistory")
+        ///Makes sure that none of the textfields are empty
+        if loanAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && numberOfPaymentsField.checkIfEmpty() == false {
+            
+            ///Makes sure that the object is not holding empty values
+            if(loan.loanAmount != 0 && loan.interest != 0 && loan.payment != 0 && loan.numberOfPayments != 0) {
+                
+                let defaults = UserDefaults.standard
+                let historyString = " 1. Loan Amount - \(loan.loanAmount) \n 2. Interest Rate (%) - \(loan.interest) \n 3. Monthly Payment - \(loan.payment) \n 4. Number of Payments - \(loan.numberOfPayments)"
+                
+                ///Resets the object to default values as soon as a save operation is done (to prevent re-saving values without making another calculation)
+                (loan.loanAmount, loan.interest, loan.payment, loan.numberOfPayments) = (0,0,0,0)
+                
+                ///Makes sure that the history list only holds last 5 calculations
+                if(loan.historyStringArray.count > 4) {
+                    loan.historyStringArray.removeFirst()
+                    loan.historyStringArray.append(historyString)
+                    defaults.set(loan.historyStringArray, forKey: "LoansHistory")
+                } else {
+                    loan.historyStringArray.append(historyString)
+                    defaults.set(loan.historyStringArray, forKey: "LoansHistory")
+                }
+                
+            } else {
+                showAlert(title: "Error", msg: "Cannot save values without making a valid calculation")
+            }
+            
+        } else {
+            showAlert(title: "Error", msg: "Cannot save values with empty fields")
+        }
     }
     
     ///Calculates the appropriate values requested y the user
