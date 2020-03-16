@@ -212,5 +212,25 @@ class Savings {
         }
     }
     
+    /**
+     Calculates compound interest rate
+     * decimal_interest_rate_value  =  number_of_compounds_per_year * (pow((future_value / current_principal_value), (1 / (number_of_compounds_per_year * number_of_years))) - 1)
+     * annual_interest_rate = decimal_interest_rate_value * 100
+     * [Reference](https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php)
+    */
+    func calculateInterest() -> Double{
+        let numberOfYears = Double(self.totalNumberOfPayments)/12
+        let interestRate = Double(self.compoundsPerYear) * (pow((self.futureValue / self.principalAmount), (1 / (Double(self.compoundsPerYear) * numberOfYears))) - 1)
+        
+        if interestRate < 0 || interestRate.isNaN || interestRate.isInfinite {
+            self.interest = 0.0;
+            return self.interest
+        } else {
+            let annualInterestRate = interestRate * 100
+            self.interest = annualInterestRate.roundTo2()
+            return self.interest
+        }
+    }
+    
     
 }

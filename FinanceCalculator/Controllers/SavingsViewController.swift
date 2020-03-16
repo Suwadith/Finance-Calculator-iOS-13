@@ -220,6 +220,17 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
                 storeTextFieldValues()
                 
             
+            } else if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == false {
+                
+                savings.totalNumberOfPayments = Int(Double(totalNoOfPaymentsField.text!)!)
+                savings.payment = Double(paymentField.text!)!
+                savings.principalAmount = Double(principalAmountField.text!)!
+                savings.futureValue = Double(futureValueField.text!)!
+                
+                interestField.text = String(savings.calculateInterest())
+                storeTextFieldValues()
+                
+            
             } else {
                 showAlert(title: "Error", msg: "Invalid Operation")
                 
@@ -267,6 +278,17 @@ class SavingsViewController: UIViewController, UITextFieldDelegate {
                 savings.futureValue = Double(futureValueField.text!)!
                 
                 totalNoOfPaymentsField.text = String(savings.calculateBeginningNumberOfPayments())
+                storeTextFieldValues()
+                
+            
+            } else if principalAmountField.checkIfEmpty() == false && interestField.checkIfEmpty() == true && futureValueField.checkIfEmpty() == false && paymentField.checkIfEmpty() == false && totalNoOfPaymentsField.checkIfEmpty() == false {
+                
+                savings.totalNumberOfPayments = Int(Double(totalNoOfPaymentsField.text!)!)
+                savings.payment = Double(paymentField.text!)!
+                savings.principalAmount = Double(principalAmountField.text!)!
+                savings.futureValue = Double(futureValueField.text!)!
+                
+                interestField.text = String(savings.calculateInterest())
                 storeTextFieldValues()
                 
             
